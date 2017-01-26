@@ -57,11 +57,46 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// React components
-	_reactDom2.default.render(_react2.default.createElement(
+	function formatName(user) {
+	  return user;
+	}
+
+	/*const user = {
+	 *  firstName: 'Carlos',
+	 *  lastName: 'Arenado'
+	 *};
+	 **/
+	function getGreeting(user) {
+	  var name = user;
+	  if (name) {
+	    return _react2.default.createElement(
+	      'h1',
+	      { className: 'username' },
+	      ' Hello, ',
+	      formatName(name),
+	      '! '
+	    );
+	  }
+	  return _react2.default.createElement(
 	    'h1',
+	    { classname: 'username' },
+	    'Hello, you!'
+	  );
+	}
+
+	function Welcome(props) {
+	  return _react2.default.createElement(
+	    'h2',
 	    null,
-	    'Hello, World, Carlos!'
-	), document.getElementById('app'));
+	    'Hello, ',
+	    props.name,
+	    '!'
+	  );
+	}
+
+	var element = _react2.default.createElement(Welcome, { name: 'Carlos Jr' });
+
+	_reactDom2.default.render(_react2.default.createElement(Welcome, { name: 'Jose Jr' }), document.getElementById('app'));
 
 /***/ },
 /* 1 */
