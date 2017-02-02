@@ -10,9 +10,16 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx$/,
-        loader: 'babel-loader'
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        query: {
+            presets: ['es2015']
+        }
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
   },
   plugins: [
     new BrowserSyncPlugin({
