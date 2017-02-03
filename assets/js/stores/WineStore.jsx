@@ -20,6 +20,27 @@ class WineStore extends EventEmitter {
         region: "France",
         inStock: false
       },
+      {
+        id: 3113222,
+        label: "Chaves",
+        qty: 4,
+        region: "France",
+        inStock: false
+      },
+      {
+        id: 312222,
+        label: "Chaves",
+        qty: 4,
+        region: "France",
+        inStock: false
+      },
+      {
+        id: 3193213222,
+        label: "Chaves",
+        qty: 4,
+        region: "France",
+        inStock: false
+      },
     ];
   }
 

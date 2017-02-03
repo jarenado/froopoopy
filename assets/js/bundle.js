@@ -26602,29 +26602,22 @@
 	        return _react2.default.createElement(_Wine2.default, _extends({ key: wine.id }, wine));
 	      });
 
-	      var buttonStyle = {
-	        padding: "10px",
-	        background: "gray"
+	      var listStyle = {
+	        paddingLeft: "0"
 	      };
 
 	      return _react2.default.createElement(
 	        "div",
-	        null,
-	        _react2.default.createElement(_Header2.default, null),
+	        { className: "container-fluid" },
 	        _react2.default.createElement(
-	          "h1",
+	          "h2",
 	          null,
 	          "Wines"
 	        ),
 	        _react2.default.createElement(
 	          "ul",
-	          null,
+	          { style: listStyle },
 	          WineComponents
-	        ),
-	        _react2.default.createElement(
-	          "button",
-	          { style: buttonStyle },
-	          "click me say hi"
 	        ),
 	        _react2.default.createElement(_Footer2.default, null)
 	      );
@@ -26739,7 +26732,7 @@
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -26769,12 +26762,12 @@
 	  }
 
 	  _createClass(Footer, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'footer',
-	        null,
-	        'Footer'
+	        "footer",
+	        { className: "col-md-12" },
+	        "Footer"
 	      );
 	    }
 	  }]);
@@ -26788,7 +26781,7 @@
 /* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -26818,13 +26811,25 @@
 	  }
 
 	  _createClass(Wine, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
-	      console.log(this.props);
+	      var listStyle = {
+	        padding: "20px",
+	        listStyle: "none",
+	        border: "thin solid blue",
+	        marginBottom: "10px"
+
+	      };
+
 	      return _react2.default.createElement(
-	        'li',
-	        null,
-	        ' ',
+	        "li",
+	        { className: "col-md-4", style: listStyle },
+	        _react2.default.createElement(
+	          "span",
+	          null,
+	          this.props.id,
+	          ": "
+	        ),
 	        this.props.label
 	      );
 	    }
@@ -26871,6 +26876,24 @@
 	      inStock: true
 	    }, {
 	      id: 3123213222,
+	      label: "Chaves",
+	      qty: 4,
+	      region: "France",
+	      inStock: false
+	    }, {
+	      id: 3113222,
+	      label: "Chaves",
+	      qty: 4,
+	      region: "France",
+	      inStock: false
+	    }, {
+	      id: 312222,
+	      label: "Chaves",
+	      qty: 4,
+	      region: "France",
+	      inStock: false
+	    }, {
+	      id: 3193213222,
 	      label: "Chaves",
 	      qty: 4,
 	      region: "France",

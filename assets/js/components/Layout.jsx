@@ -22,17 +22,15 @@ class Layout extends React.Component {
       return <Wine key={wine.id} {...wine} />;
     });
 
-    const buttonStyle = {
-        padding: "10px",
-        background: "gray"
+    const listStyle = {
+        paddingLeft: "0",
     }
 
     return (
-      <div>
-        <Header />
-        <h1>Wines</h1>
-        <ul>{WineComponents}</ul>
-        <button style={buttonStyle}>click me say hi</button>
+      <div className="container-fluid">
+        {/* <Header /> */}
+        <h2>Wines</h2>
+        <ul style={listStyle}>{WineComponents}</ul>
         <Footer />
       </div>
     );
