@@ -13,6 +13,7 @@ class Wine extends React.Component {
     return (
       <li className="col-md-4" style={listStyle}>
 	<span>{this.props.id}: </span>
+	<span>{this.props.qty}: </span>
 	{this.props.label}
       </li> 
     );

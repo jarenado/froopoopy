@@ -14,6 +14,15 @@ class Layout extends React.Component {
     }
   }
 
+  componentWillMount() {
+    WineStore.on("change", () => {
+      this.setState({
+        wines: WineStore.getAll()
+      });
+    });
+
+  }
+
   render() {
 
     const { wines } = this.state;

@@ -26593,6 +26593,17 @@
 	  }
 
 	  _createClass(Layout, [{
+	    key: "componentWillMount",
+	    value: function componentWillMount() {
+	      var _this2 = this;
+
+	      _WineStore2.default.on("change", function () {
+	        _this2.setState({
+	          wines: _WineStore2.default.getAll()
+	        });
+	      });
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var wines = this.state.wines;
@@ -26830,6 +26841,12 @@
 	          this.props.id,
 	          ": "
 	        ),
+	        _react2.default.createElement(
+	          "span",
+	          null,
+	          this.props.qty,
+	          ": "
+	        ),
 	        this.props.label
 	      );
 	    }
@@ -26907,12 +26924,25 @@
 	    value: function getAll() {
 	      return this.wines;
 	    }
+	  }, {
+	    key: "addWine",
+	    value: function addWine(wineInfo) {
+	      var id = Date.now();
+	      this.wines.push({
+	        id: id,
+	        label: wineInfo.label,
+	        qty: wineInfo.qty
+	      });
+
+	      this.emit("change");
+	    }
 	  }]);
 
 	  return WineStore;
 	}(_events.EventEmitter);
 
 	var wineStore = new WineStore();
+	window.wineStore = wineStore;
 
 	exports.default = wineStore;
 

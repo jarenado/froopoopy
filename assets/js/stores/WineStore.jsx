@@ -48,8 +48,21 @@ class WineStore extends EventEmitter {
     return this.wines;
   }
 
+  addWine(wineInfo) {
+    const id = Date.now();
+    this.wines.push({
+      id,
+      label: wineInfo.label,
+      qty: wineInfo.qty,
+    });
+
+    this.emit("change");
+
+  }
+
 }
 
 const wineStore = new WineStore;
+window.wineStore = wineStore; 
 
 export default wineStore;
