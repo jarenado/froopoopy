@@ -12,7 +12,6 @@ import { fetchUser } from "../actions/userActions";
 export default class Layout extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchUser())
-
   }
 
   render() {
