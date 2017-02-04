@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 
 import { fetchUser } from "../actions/userActions";
 
+import Header from "../components/Header"; 
+import Footer from "../components/Footer"; 
+
+
 @connect((store) => {
   return {
     user: store.user
@@ -15,6 +19,15 @@ export default class Layout extends React.Component {
   }
 
   render() {
-    return <h1>{this.props.user.name}</h1>;
+    const title = "Welcome ";
+    const { user }  = this.props
+
+    return (
+      <div>
+        <Header title={title} />
+        <h1>Hello, {user.name}!</h1>;
+        <Footer />
+      </div>
+    )
   }
 }
