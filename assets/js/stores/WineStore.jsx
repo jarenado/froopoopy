@@ -1,34 +1,21 @@
-import { EventEmitter } from "events";
+import { applyMiddleware, createStore } from "redux";
 
-class WineStore extends EventEmitter {
+import createLogger from "redux-logger";
+import thunk from 'redux-thunk';
 
-  constructor() {
-    super();
-
-    this.wines = [
-      {
-        id: 1123213222,
-        label: "Big House Blue",
-        qty: 4,
-        region: "Napa",
-        inStock: true
-      },
-      {
-        id: 3123213222,
-        label: "Chaves",
-        qty: 4,
-        region: "France",
-        inStock: false
-      },
-    ];
-  }
-
-  getAll() {
-    return this.wines;
-  }
-
+/*import { reducer } from "../reducers";*/
+const reducer = function(state={user: {
+    name: "dude",
+    age: 35,
+}}, action) {
+    if (action.type === "FETCH_USER_FULFILLED") {
+	state = {...state, user: action.payload}
+    }
+    return state;
 }
 
-const wineStore = new WineStore;
+const logger = createLogger();
+const middleware = applyMiddleware(thunk, logger);
 
-export default wineStore;
+
+export default createStore(reducer, middleware);

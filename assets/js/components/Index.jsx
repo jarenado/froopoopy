@@ -1,64 +1,22 @@
 // React components
-/*import React from 'react';
- *import ReactDOM from 'react-dom';
- *import { Router, Route, IndexRoute, browserHistory } from "react-router";
- *
- *import Layout from "./Layout";
- *
- *const app = document.getElementById('app');
- *ReactDOM.render(
- *    <Router history={browserHistory}>
- *	<Route  path="/" component={Layout}>
- *	</Route>
- *    </Router>,
- *    app
- *);
- **/
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
 
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import thunk from 'redux-thunk';
-import axios from 'axios';
-import createLogger from "redux-logger";
+import { Router, Route, IndexRoute, browserHistory } from "react-router";
 
-const userReducer = (state={}, action) => {
-  switch(action.type) {
-    case "CHANGE_NAME": {
-      state = {...state, name: action.payload };
-      break;
-    }
-    case "CHANGE_AGE": {
-      state = {...state, age: action.payload };
-      break;
-    }
-  }
-  return state;
-};
+import store from "../stores/WineStore";
 
-const wineReducer = (state={}, action) => {
-  return state;
-};
+import Layout from "./Layout";
 
-const reducers = combineReducers({
-  user: userReducer,
-  wine: wineReducer
-});
+const app = document.getElementById('app');
 
-
-const logger = createLogger();
-const middleware = applyMiddleware(thunk, logger);
-
-const store = createStore(reducers, middleware);
-
-store.subscribe(() => {
-  console.log("store changed", store.getState())
-});
-
-store.dispatch((dispatch) => {
-  dispatch({type: "FETCH_WINES_START" });
-  /*axios.get("http://rest.learncode.academy/api/wstern/users")*/
-  axios.get("http://services.wine.com/api/beta2/service.svc/json/catalog?apiKey=0b48cc9c67fb2b18523afd8557c068b5")
-       .then((response) => {
-         dispatch({type: "RECEIVE_USERS", payload: response.data });
-       });
-});
-
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={browserHistory}>
+	<Route  path="/" component={Layout}>
+	</Route>
+    </Router>
+  </Provider>,
+    app
+);

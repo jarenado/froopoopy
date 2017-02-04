@@ -1,14 +1,21 @@
-import { createStore } from "redux";
+import React from "react";
+import { connect } from "react-redux";
 
-const reducer = function() {
+import { fetchUser } from "../actions/userActions";
 
+@connect((store) => {
+  return {
+    user: store.user
+  };
+})
+
+export default class Layout extends React.Component {
+  componentWillMount() {
+    this.props.dispatch(fetchUser())
+
+  }
+
+  render() {
+    return <h1>{this.props.user.name}</h1>;
+  }
 }
-
-store.subscribe(()) =>{
-    console.log("store changed", store.getState())
-});
-
-store.dispatch({
-    type: "INC",
-    payload: 1
-});
