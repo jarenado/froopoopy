@@ -2,9 +2,13 @@ import React from 'react';
 
 class Wine extends React.Component {
   render() {
-    console.log(this.props);
+    const listStyle = {
+      padding: "10px",
+      border: "thin solid blue",
+      marginTop: "5px",
+    }; 
     return (
-      <li> {this.props.label}</li> 
+      <li style={listStyle}> {this.props.label}</li> 
     );
 
   }

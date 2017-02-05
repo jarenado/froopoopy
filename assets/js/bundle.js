@@ -62,7 +62,7 @@
 
 	var _WineStore2 = _interopRequireDefault(_WineStore);
 
-	var _Layout = __webpack_require__(280);
+	var _Layout = __webpack_require__(279);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -28681,7 +28681,7 @@
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _userReducer = __webpack_require__(279);
+	var _userReducer = __webpack_require__(277);
 
 	var _userReducer2 = _interopRequireDefault(_userReducer);
 
@@ -29594,32 +29594,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 277 */,
-/* 278 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = function () {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { wines: [] };
-	    var action = arguments[1];
-
-	    if (action.type === "FETCH_WINES") {
-	        state = _extends({}, state, { wines: action.payload });
-	    }
-	    return state;
-	};
-
-	;
-
-/***/ },
-/* 279 */
+/* 277 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29647,7 +29622,31 @@
 	}
 
 /***/ },
-/* 280 */
+/* 278 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { wines: [] };
+	    var action = arguments[1];
+
+	    if (action.type === "FETCH_WINES") {
+	        state = _extends({}, state, { wines: action.payload });
+	    }
+	    return state;
+	};
+
+	;
+
+/***/ },
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29667,9 +29666,9 @@
 
 	var _reactRedux = __webpack_require__(178);
 
-	var _userActions = __webpack_require__(281);
+	var _userActions = __webpack_require__(280);
 
-	var _wineActions = __webpack_require__(285);
+	var _wineActions = __webpack_require__(281);
 
 	var _Header = __webpack_require__(282);
 
@@ -29678,6 +29677,10 @@
 	var _Footer = __webpack_require__(284);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
+
+	var _Wine = __webpack_require__(285);
+
+	var _Wine2 = _interopRequireDefault(_Wine);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29715,26 +29718,18 @@
 	          user = _props.user,
 	          wines = _props.wines;
 
-	      var mappedWines = wines.map(function (wine) {
-	        return _react2.default.createElement(
-	          "li",
-	          null,
-	          wine.name
-	        );
+	      var mappedWines = wines.map(function (wine, index) {
+	        return _react2.default.createElement(_Wine2.default, { key: index, label: wine.name });
 	      });
+	      var listStyle = {
+	        listStyle: "none",
+	        padding: "0"
+	      };
 
 	      return _react2.default.createElement(
 	        "div",
-	        null,
-	        _react2.default.createElement(_Header2.default, { title: title }),
-	        _react2.default.createElement(
-	          "h1",
-	          null,
-	          "Hello, ",
-	          user.name,
-	          "!"
-	        ),
-	        ";",
+	        { className: "container-fluid" },
+	        _react2.default.createElement(_Header2.default, { title: user.name }),
 	        _react2.default.createElement(
 	          "p",
 	          null,
@@ -29742,7 +29737,7 @@
 	        ),
 	        _react2.default.createElement(
 	          "ul",
-	          null,
+	          { style: listStyle },
 	          mappedWines
 	        ),
 	        _react2.default.createElement(_Footer2.default, null)
@@ -29755,7 +29750,7 @@
 	exports.default = Layout;
 
 /***/ },
-/* 281 */
+/* 280 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29772,6 +29767,29 @@
 	      age: 40,
 	      hair: "brown"
 	    }
+	  };
+	}
+
+/***/ },
+/* 281 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchWines = fetchWines;
+	function fetchWines() {
+	  return {
+	    type: "FETCH_WINES",
+	    payload: [{
+	      name: "wine one",
+	      vintage: 2014
+	    }, {
+	      name: "wine two",
+	      vintage: 2014
+	    }]
 	  };
 	}
 
@@ -29864,7 +29882,9 @@
 	      return _react2.default.createElement(
 	        'h1',
 	        null,
-	        this.props.title
+	        'Welcome, ',
+	        this.props.title,
+	        '!'
 	      );
 	    }
 	  }]);
@@ -29926,26 +29946,58 @@
 
 /***/ },
 /* 285 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchWines = fetchWines;
-	function fetchWines() {
-	  return {
-	    type: "FETCH_WINES",
-	    payload: [{
-	      name: "wine one",
-	      vintage: 2014
-	    }, {
-	      name: "wine two",
-	      vintage: 2014
-	    }]
-	  };
-	}
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Wine = function (_React$Component) {
+	  _inherits(Wine, _React$Component);
+
+	  function Wine() {
+	    _classCallCheck(this, Wine);
+
+	    return _possibleConstructorReturn(this, (Wine.__proto__ || Object.getPrototypeOf(Wine)).apply(this, arguments));
+	  }
+
+	  _createClass(Wine, [{
+	    key: "render",
+	    value: function render() {
+	      var listStyle = {
+	        padding: "10px",
+	        border: "thin solid blue",
+	        marginTop: "5px"
+	      };
+	      return _react2.default.createElement(
+	        "li",
+	        { style: listStyle },
+	        " ",
+	        this.props.label
+	      );
+	    }
+	  }]);
+
+	  return Wine;
+	}(_react2.default.Component);
+
+	exports.default = Wine;
 
 /***/ }
 /******/ ]);

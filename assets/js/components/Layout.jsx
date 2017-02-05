@@ -6,6 +6,7 @@ import { fetchWines } from "../actions/wineActions";
 
 import Header from "../components/Header"; 
 import Footer from "../components/Footer"; 
+import Wine from "../components/Wine"; 
 
 
 @connect((store) => {
@@ -24,14 +25,18 @@ export default class Layout extends React.Component {
   render() {
     const title = "Welcome ";
     const { user, wines } = this.props
-    const mappedWines = wines.map(wine => <li>{wine.name}</li>)
+    const mappedWines = wines.map((wine,index) => <Wine key={index} label={wine.name} />)
+    const listStyle = {
+      listStyle: "none",
+      padding: "0",
+    };
+
 
     return (
-      <div>
-        <Header title={title} />
-        <h1>Hello, {user.name}!</h1>;
+      <div className="container-fluid">
+        <Header title={user.name} />
         <p>Here are you're wines:</p>
-        <ul>{mappedWines}</ul>
+        <ul style={listStyle}>{mappedWines}</ul>
         <Footer />
       </div>
     )
