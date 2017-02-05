@@ -62,7 +62,7 @@
 
 	var _WineStore2 = _interopRequireDefault(_WineStore);
 
-	var _Layout = __webpack_require__(277);
+	var _Layout = __webpack_require__(280);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -28671,8 +28671,6 @@
 	    value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _redux = __webpack_require__(189);
 
 	var _reduxLogger = __webpack_require__(270);
@@ -28683,21 +28681,21 @@
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
+	var _userReducer = __webpack_require__(279);
+
+	var _userReducer2 = _interopRequireDefault(_userReducer);
+
+	var _wineReducer = __webpack_require__(278);
+
+	var _wineReducer2 = _interopRequireDefault(_wineReducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/*import { reducer } from "../reducers";*/
-	var reducer = function reducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { user: {
-	            name: "dude",
-	            age: 35
-	        } };
-	    var action = arguments[1];
-
-	    if (action.type === "FETCH_USER_FULFILLED") {
-	        state = _extends({}, state, { user: action.payload });
-	    }
-	    return state;
-	};
+	var reducer = (0, _redux.combineReducers)({
+	    user: _userReducer2.default,
+	    wines: _wineReducer2.default
+	});
 
 	var logger = (0, _reduxLogger2.default)();
 	var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, logger);
@@ -29596,7 +29594,60 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 277 */
+/* 277 */,
+/* 278 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { wines: [] };
+	    var action = arguments[1];
+
+	    if (action.type === "FETCH_WINES") {
+	        state = _extends({}, state, { wines: action.payload });
+	    }
+	    return state;
+	};
+
+	;
+
+/***/ },
+/* 279 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = reducer;
+	function reducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+	    user: {
+	      name: "Carlos",
+	      age: 38
+	    }
+	  };
+	  var action = arguments[1];
+
+	  if (action.type === "FETCH_USER_FULFILLED") {
+	    state = _extends({}, state, { user: action.payload });
+	  }
+	  return state;
+	}
+
+/***/ },
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29616,13 +29667,15 @@
 
 	var _reactRedux = __webpack_require__(178);
 
-	var _userActions = __webpack_require__(278);
+	var _userActions = __webpack_require__(281);
 
-	var _Header = __webpack_require__(279);
+	var _wineActions = __webpack_require__(285);
+
+	var _Header = __webpack_require__(282);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(281);
+	var _Footer = __webpack_require__(284);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -29636,7 +29689,8 @@
 
 	var Layout = (_dec = (0, _reactRedux.connect)(function (store) {
 	  return {
-	    user: store.user
+	    user: store.user.user,
+	    wines: store.wines.wines
 	  };
 	}), _dec(_class = function (_React$Component) {
 	  _inherits(Layout, _React$Component);
@@ -29651,13 +29705,23 @@
 	    key: "componentWillMount",
 	    value: function componentWillMount() {
 	      this.props.dispatch((0, _userActions.fetchUser)());
+	      this.props.dispatch((0, _wineActions.fetchWines)());
 	    }
 	  }, {
 	    key: "render",
 	    value: function render() {
 	      var title = "Welcome ";
-	      var user = this.props.user;
+	      var _props = this.props,
+	          user = _props.user,
+	          wines = _props.wines;
 
+	      var mappedWines = wines.map(function (wine) {
+	        return _react2.default.createElement(
+	          "li",
+	          null,
+	          wine.name
+	        );
+	      });
 
 	      return _react2.default.createElement(
 	        "div",
@@ -29671,6 +29735,16 @@
 	          "!"
 	        ),
 	        ";",
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "Here are you're wines:"
+	        ),
+	        _react2.default.createElement(
+	          "ul",
+	          null,
+	          mappedWines
+	        ),
 	        _react2.default.createElement(_Footer2.default, null)
 	      );
 	    }
@@ -29681,7 +29755,7 @@
 	exports.default = Layout;
 
 /***/ },
-/* 278 */
+/* 281 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29702,7 +29776,7 @@
 	}
 
 /***/ },
-/* 279 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29717,7 +29791,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Title = __webpack_require__(280);
+	var _Title = __webpack_require__(283);
 
 	var _Title2 = _interopRequireDefault(_Title);
 
@@ -29752,7 +29826,7 @@
 	exports.default = Header;
 
 /***/ },
-/* 280 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29801,7 +29875,7 @@
 	exports.default = Title;
 
 /***/ },
-/* 281 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29849,6 +29923,29 @@
 	}(_react2.default.Component);
 
 	exports.default = Footer;
+
+/***/ },
+/* 285 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.fetchWines = fetchWines;
+	function fetchWines() {
+	  return {
+	    type: "FETCH_WINES",
+	    payload: [{
+	      name: "wine one",
+	      vintage: 2014
+	    }, {
+	      name: "wine two",
+	      vintage: 2014
+	    }]
+	  };
+	}
 
 /***/ }
 /******/ ]);

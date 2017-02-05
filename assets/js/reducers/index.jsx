@@ -1,9 +1,9 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "redux"
 
+import wine from "./wineReducer";
 import user from "./userReducer";
-import wines from "./wineReducer";
 
 export default combineReducers({
+    wine,
     user,
-    wines
-});
+})

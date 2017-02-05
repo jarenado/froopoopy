@@ -1,3 +1,6 @@
-export default function reducer(state, action) {
-  return state;
+export default function (state={wines:[]}, action) {
+    if (action.type === "FETCH_WINES") {
+	state = {...state, wines:action.payload}
+    }
+    return state;
 };

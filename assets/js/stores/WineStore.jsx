@@ -1,18 +1,16 @@
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore, combineReducers } from "redux";
 
 import createLogger from "redux-logger";
 import thunk from 'redux-thunk';
 
 /*import { reducer } from "../reducers";*/
-const reducer = function(state={user: {
-    name: "dude",
-    age: 35,
-}}, action) {
-    if (action.type === "FETCH_USER_FULFILLED") {
-	state = {...state, user: action.payload}
-    }
-    return state;
-}
+import user from "../reducers/userReducer";
+import wines from "../reducers/wineReducer";
+
+const reducer = combineReducers({
+    user,
+    wines
+});
 
 const logger = createLogger();
 const middleware = applyMiddleware(thunk, logger);
