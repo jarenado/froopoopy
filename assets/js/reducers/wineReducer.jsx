@@ -1,6 +1,13 @@
 export default function (state={wines:[]}, action) {
-    if (action.type === "FETCH_WINES") {
-	state = {...state, wines:action.payload}
+    switch(action.type) {
+      case "FETCH_WINES": {
+        return {...state, wines:action.payload}
+        break;
+      }
+      case "ADD_WINE": {
+        return {...state, wines:[...state.wines, action.payload]}
+        break;
+      }
     }
     return state;
 };

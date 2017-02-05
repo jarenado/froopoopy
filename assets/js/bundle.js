@@ -29628,20 +29628,31 @@
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	exports.default = function () {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { wines: [] };
-	    var action = arguments[1];
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { wines: [] };
+	  var action = arguments[1];
 
-	    if (action.type === "FETCH_WINES") {
-	        state = _extends({}, state, { wines: action.payload });
-	    }
-	    return state;
+	  switch (action.type) {
+	    case "FETCH_WINES":
+	      {
+	        return _extends({}, state, { wines: action.payload });
+	        break;
+	      }
+	    case "ADD_WINE":
+	      {
+	        return _extends({}, state, { wines: [].concat(_toConsumableArray(state.wines), [action.payload]) });
+	        break;
+	      }
+	  }
+	  return state;
 	};
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	;
 
@@ -29711,15 +29722,19 @@
 	      this.props.dispatch((0, _wineActions.fetchWines)());
 	    }
 	  }, {
+	    key: "addWine",
+	    value: function addWine() {
+	      this.props.dispatch((0, _wineActions.addWine)());
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
-	      var title = "Welcome ";
 	      var _props = this.props,
 	          user = _props.user,
 	          wines = _props.wines;
 
 	      var mappedWines = wines.map(function (wine, index) {
-	        return _react2.default.createElement(_Wine2.default, { key: index, label: wine.name });
+	        return _react2.default.createElement(_Wine2.default, { key: index, id: wine.id, label: wine.name });
 	      });
 	      var listStyle = {
 	        listStyle: "none",
@@ -29739,6 +29754,11 @@
 	          "ul",
 	          { style: listStyle },
 	          mappedWines
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          { className: "btn btn-danger", onClick: this.addWine.bind(this) },
+	          "Add Wine"
 	        ),
 	        _react2.default.createElement(_Footer2.default, null)
 	      );
@@ -29780,16 +29800,32 @@
 	  value: true
 	});
 	exports.fetchWines = fetchWines;
+	exports.addWine = addWine;
 	function fetchWines() {
+	  var id = Date.now();
 	  return {
 	    type: "FETCH_WINES",
 	    payload: [{
+	      id: id,
 	      name: "wine one",
 	      vintage: 2014
 	    }, {
+	      id: id,
 	      name: "wine two",
 	      vintage: 2014
 	    }]
+	  };
+	}
+
+	function addWine() {
+	  var id = Date.now();
+	  return {
+	    type: "ADD_WINE",
+	    payload: {
+	      id: id,
+	      name: "wine three",
+	      vintage: 2016
+	    }
 	  };
 	}
 
@@ -29980,6 +30016,10 @@
 	  _createClass(Wine, [{
 	    key: "render",
 	    value: function render() {
+	      var _props = this.props,
+	          label = _props.label,
+	          id = _props.id;
+
 	      var listStyle = {
 	        padding: "10px",
 	        border: "thin solid blue",
@@ -29988,8 +30028,17 @@
 	      return _react2.default.createElement(
 	        "li",
 	        { style: listStyle },
-	        " ",
-	        this.props.label
+	        _react2.default.createElement(
+	          "span",
+	          null,
+	          id,
+	          ": "
+	        ),
+	        _react2.default.createElement(
+	          "span",
+	          null,
+	          label
+	        )
 	      );
 	    }
 	  }]);

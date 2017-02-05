@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { fetchUser } from "../actions/userActions";
-import { fetchWines } from "../actions/wineActions";
+import { fetchWines, addWine } from "../actions/wineActions";
 
 import Header from "../components/Header"; 
 import Footer from "../components/Footer"; 
@@ -22,10 +22,13 @@ export default class Layout extends React.Component {
     this.props.dispatch(fetchWines())
   }
 
+  addWine() {
+    this.props.dispatch(addWine())
+  }
+
   render() {
-    const title = "Welcome ";
     const { user, wines } = this.props
-    const mappedWines = wines.map((wine,index) => <Wine key={index} label={wine.name} />)
+    const mappedWines = wines.map((wine,index) => <Wine key={index} id={wine.id} label={wine.name} />)
     const listStyle = {
       listStyle: "none",
       padding: "0",
@@ -37,6 +40,7 @@ export default class Layout extends React.Component {
         <Header title={user.name} />
         <p>Here are you're wines:</p>
         <ul style={listStyle}>{mappedWines}</ul>
+        <button className="btn btn-danger" onClick={this.addWine.bind(this)}>Add Wine</button>
         <Footer />
       </div>
     )
