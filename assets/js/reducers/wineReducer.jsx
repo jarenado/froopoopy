@@ -9,7 +9,7 @@ export default function (state={wines:[]}, action) {
         break;
       }
       case "DELETE_WINE": {
-	return {...state, wines: [...state.wines].splice(action.payload, 1)}
+	return {...state, wines: [state.wines.splice(action.payload, 1)]}
 	break;
       }
     }
