@@ -29648,6 +29648,11 @@
 	        return _extends({}, state, { wines: [].concat(_toConsumableArray(state.wines), [action.payload]) });
 	        break;
 	      }
+	    case "DELETE_WINE":
+	      {
+	        return _extends({}, state, { wines: [].concat(_toConsumableArray(state.wines)).splice(action.payload, 1) });
+	        break;
+	      }
 	  }
 	  return state;
 	};
@@ -29727,14 +29732,22 @@
 	      this.props.dispatch((0, _wineActions.addWine)());
 	    }
 	  }, {
+	    key: "deleteWine",
+	    value: function deleteWine(index) {
+	      console.log(index);
+	      this.props.dispatch((0, _wineActions.deleteWine)(index));
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+
 	      var _props = this.props,
 	          user = _props.user,
 	          wines = _props.wines;
 
 	      var mappedWines = wines.map(function (wine, index) {
-	        return _react2.default.createElement(_Wine2.default, { key: index, id: wine.id, label: wine.name });
+	        return _react2.default.createElement(_Wine2.default, { onClick: _this2.deleteWine.bind(_this2, index), key: index, id: wine.id, label: wine.name });
 	      });
 	      var listStyle = {
 	        listStyle: "none",
@@ -29801,16 +29814,16 @@
 	});
 	exports.fetchWines = fetchWines;
 	exports.addWine = addWine;
+	exports.deleteWine = deleteWine;
 	function fetchWines() {
-	  var id = Date.now();
 	  return {
 	    type: "FETCH_WINES",
 	    payload: [{
-	      id: id,
+	      id: 1,
 	      name: "wine one",
 	      vintage: 2014
 	    }, {
-	      id: id,
+	      id: 2,
 	      name: "wine two",
 	      vintage: 2014
 	    }]
@@ -29825,6 +29838,15 @@
 	      id: id,
 	      name: "wine three",
 	      vintage: 2016
+	    }
+	  };
+	}
+
+	function deleteWine(index) {
+	  return {
+	    type: "DELETE_WINE",
+	    payload: {
+	      index: index
 	    }
 	  };
 	}
@@ -30038,6 +30060,15 @@
 	          "span",
 	          null,
 	          label
+	        ),
+	        _react2.default.createElement(
+	          "span",
+	          null,
+	          _react2.default.createElement(
+	            "button",
+	            { onClick: this.props.onClick, className: "btn btn-normal" },
+	            "Delete"
+	          )
 	        )
 	      );
 	    }

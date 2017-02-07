@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { fetchUser } from "../actions/userActions";
-import { fetchWines, addWine } from "../actions/wineActions";
+import { fetchWines, addWine, deleteWine } from "../actions/wineActions";
 
 import Header from "../components/Header"; 
 import Footer from "../components/Footer"; 
@@ -25,10 +25,15 @@ export default class Layout extends React.Component {
   addWine() {
     this.props.dispatch(addWine())
   }
+  
+  deleteWine(index) {
+    console.log(index);
+    this.props.dispatch(deleteWine(index))
+  }
 
   render() {
     const { user, wines } = this.props
-    const mappedWines = wines.map((wine,index) => <Wine key={index} id={wine.id} label={wine.name} />)
+    const mappedWines = wines.map((wine,index) => <Wine onClick={this.deleteWine.bind(this, index)} key={index} id={wine.id} label={wine.name} />)
     const listStyle = {
       listStyle: "none",
       padding: "0",

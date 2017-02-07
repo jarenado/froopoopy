@@ -1,15 +1,14 @@
 export function fetchWines() {
-  const id = Date.now();
   return {
     type: "FETCH_WINES",
     payload: [
       {
-        id,
+        id: 1,
         name: "wine one",
         vintage: 2014,
       },
       {
-        id,
+	id: 2,
         name: "wine two",
         vintage: 2014,
       },
@@ -25,6 +24,15 @@ export function addWine() {
       id,
       name: "wine three",
       vintage: 2016,
+    } 
+  }
+}
+
+export function deleteWine(index) {
+  return {
+    type: "DELETE_WINE",
+    payload: {
+      index,
     } 
   }
 }
