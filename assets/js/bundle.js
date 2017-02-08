@@ -29643,6 +29643,15 @@
 	        return _extends({}, state, { wines: action.payload });
 	        break;
 	      }
+	    case "TOGGLE_EDIT":
+	      {
+	        if (action.payload.editing) {
+	          console.log('now false');
+	        } else {
+	          console.log('now true');
+	        }
+	        break;
+	      }
 	    case "ADD_WINE":
 	      {
 	        return _extends({}, state, { wines: [].concat(_toConsumableArray(state.wines), [action.payload]) });
@@ -29807,6 +29816,7 @@
 	exports.fetchWines = fetchWines;
 	exports.addWine = addWine;
 	exports.deleteWine = deleteWine;
+	exports.toggleEdit = toggleEdit;
 	function fetchWines() {
 	  return {
 	    type: "FETCH_WINES",
@@ -29841,6 +29851,15 @@
 	    type: "DELETE_WINE",
 	    payload: {
 	      id: id
+	    }
+	  };
+	}
+
+	function toggleEdit(editing) {
+	  return {
+	    type: "TOGGLE_EDIT",
+	    payload: {
+	      editing: editing
 	    }
 	  };
 	}
@@ -30008,9 +30027,15 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _dec, _class;
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(178);
+
+	var _wineActions = __webpack_require__(281);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30020,7 +30045,11 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Wine = function (_React$Component) {
+	var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
+	  return {
+	    wines: store.wines.wines
+	  };
+	}), _dec(_class = function (_React$Component) {
 	  _inherits(Wine, _React$Component);
 
 	  function Wine() {
@@ -30030,9 +30059,18 @@
 	  }
 
 	  _createClass(Wine, [{
+	    key: 'deleteWine',
+	    value: function deleteWine(id) {
+	      this.props.dispatch((0, _wineActions.deleteWine)(id));
+	    }
+	  }, {
+	    key: 'handleEdit',
+	    value: function handleEdit(editing) {
+	      this.props.dispatch((0, _wineActions.toggleEdit)(editing));
+	    }
+	  }, {
 	    key: 'renderItemOrEditFields',
 	    value: function renderItemOrEditFields(wine) {
-	      console.log('im lost', this.props);
 	      var _props = this.props,
 	          label = _props.label,
 	          id = _props.id,
@@ -30048,7 +30086,35 @@
 	        return _react2.default.createElement(
 	          'div',
 	          null,
-	          'editing'
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            id,
+	            ': '
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            _react2.default.createElement('input', { type: 'text', name: label })
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.deleteWine.bind(this, id), className: 'btn btn-normal' },
+	              'Delete'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleEdit.bind(this, editing), className: 'btn btn-normal' },
+	              'Edit'
+	            )
+	          )
 	        );
 	      } else {
 	        return _react2.default.createElement(
@@ -30070,8 +30136,17 @@
 	            null,
 	            _react2.default.createElement(
 	              'button',
-	              { onClick: this.props.onClick, className: 'btn btn-normal' },
+	              { onClick: this.deleteWine.bind(this, id), className: 'btn btn-normal' },
 	              'Delete'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleEdit.bind(this, editing), className: 'btn btn-normal' },
+	              'Edit'
 	            )
 	          )
 	        );
@@ -30086,8 +30161,7 @@
 	  }]);
 
 	  return Wine;
-	}(_react2.default.Component);
-
+	}(_react2.default.Component)) || _class);
 	exports.default = Wine;
 
 /***/ },
@@ -30155,16 +30229,8 @@
 	      this.props.dispatch((0, _wineActions.fetchWines)());
 	    }
 	  }, {
-	    key: "deleteWine",
-	    value: function deleteWine(id) {
-	      console.log(id);
-	      this.props.dispatch((0, _wineActions.deleteWine)(id));
-	    }
-	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this2 = this;
-
 	      var _props = this.props,
 	          wines = _props.wines,
 	          user = _props.user;
@@ -30174,7 +30240,7 @@
 	        padding: "0"
 	      };
 	      var mappedWines = wines.map(function (wine, index) {
-	        return _react2.default.createElement(_Wine2.default, { onClick: _this2.deleteWine.bind(_this2, wine.id), key: index, id: wine.id, label: wine.name, editing: wine.editing });
+	        return _react2.default.createElement(_Wine2.default, { key: index, id: wine.id, label: wine.name, editing: wine.editing });
 	      });
 
 	      return _react2.default.createElement(

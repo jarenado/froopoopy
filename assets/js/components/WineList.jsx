@@ -22,10 +22,7 @@ class WineList extends React.Component {
     this.props.dispatch(fetchWines())
   }
 
-  deleteWine(id) {
-    console.log(id);
-    this.props.dispatch(deleteWine(id))
-  }
+
 
   render () {
     const {wines, user} = this.props
@@ -33,7 +30,7 @@ class WineList extends React.Component {
       listStyle: "none",
       padding: "0",
     };
-    const mappedWines = wines.map((wine,index) => <Wine onClick={this.deleteWine.bind(this, wine.id)} key={index} id={wine.id} label={wine.name} editing={wine.editing} />)
+    const mappedWines = wines.map((wine,index) => <Wine key={index} id={wine.id} label={wine.name} editing={wine.editing} />)
 
     return (
       <ul style={listStyle}>{mappedWines}</ul>

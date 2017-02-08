@@ -38,3 +38,12 @@ export function deleteWine(id) {
     } 
   }
 }
+
+export function toggleEdit(editing) {
+  return {
+    type: "TOGGLE_EDIT",
+    payload: {
+      editing: editing,
+    } 
+  }
+}

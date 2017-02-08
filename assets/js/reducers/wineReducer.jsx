@@ -4,6 +4,14 @@ export default function (state={wines:[]}, action) {
       return {...state, wines:action.payload}
       break;
     }
+    case "TOGGLE_EDIT": {
+      if (action.payload.editing) {
+        console.log('now false')
+      }else {
+        console.log('now true')
+      }
+      break;
+    }
     case "ADD_WINE": {
       return {...state, wines:[...state.wines, action.payload]}
       break;
