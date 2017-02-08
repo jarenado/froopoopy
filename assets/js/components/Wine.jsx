@@ -12,7 +12,7 @@ class Wine extends React.Component {
       <li style={listStyle}>
         <span>{id}: </span>
         <span>{label}</span>
-	<span><button onClick={this.props.onClick} className="btn btn-normal" >Delete</button></span>
+        <span><button onClick={this.props.onClick} className="btn btn-normal" >Delete</button></span>
       </li> 
     );
 
