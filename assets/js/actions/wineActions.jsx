@@ -6,11 +6,13 @@ export function fetchWines() {
         id: 1,
         name: "wine one",
         vintage: 2014,
+	editing: true,
       },
       {
 	id: 2,
         name: "wine two",
         vintage: 2014,
+	editing: false,
       },
    ] 
   }

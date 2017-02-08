@@ -29679,6 +29679,15 @@
 
 	var _dec, _class;
 
+	//connect to store
+
+
+	//actions
+
+
+	//components
+
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -29804,11 +29813,13 @@
 	    payload: [{
 	      id: 1,
 	      name: "wine one",
-	      vintage: 2014
+	      vintage: 2014,
+	      editing: true
 	    }, {
 	      id: 2,
 	      name: "wine two",
-	      vintage: 2014
+	      vintage: 2014,
+	      editing: false
 	    }]
 	  };
 	}
@@ -29989,7 +30000,7 @@
 /* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -30019,41 +30030,58 @@
 	  }
 
 	  _createClass(Wine, [{
-	    key: "render",
-	    value: function render() {
+	    key: 'renderItemOrEditFields',
+	    value: function renderItemOrEditFields(wine) {
+	      console.log('im lost', this.props);
 	      var _props = this.props,
 	          label = _props.label,
-	          id = _props.id;
+	          id = _props.id,
+	          editing = _props.editing;
 
 	      var listStyle = {
 	        padding: "10px",
 	        border: "thin solid blue",
 	        marginTop: "5px"
 	      };
-	      return _react2.default.createElement(
-	        "li",
-	        { style: listStyle },
-	        _react2.default.createElement(
-	          "span",
+
+	      if (editing) {
+	        return _react2.default.createElement(
+	          'div',
 	          null,
-	          id,
-	          ": "
-	        ),
-	        _react2.default.createElement(
-	          "span",
-	          null,
-	          label
-	        ),
-	        _react2.default.createElement(
-	          "span",
-	          null,
+	          'editing'
+	        );
+	      } else {
+	        return _react2.default.createElement(
+	          'li',
+	          { style: listStyle },
 	          _react2.default.createElement(
-	            "button",
-	            { onClick: this.props.onClick, className: "btn btn-normal" },
-	            "Delete"
+	            'span',
+	            null,
+	            id,
+	            ': '
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            label
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.props.onClick, className: 'btn btn-normal' },
+	              'Delete'
+	            )
 	          )
-	        )
-	      );
+	        );
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+
+	      return this.renderItemOrEditFields("jsoe");
 	    }
 	  }]);
 
@@ -30075,6 +30103,15 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _dec, _class;
+
+	//connect to store
+
+
+	//actions
+
+
+	//components
+
 
 	var _react = __webpack_require__(1);
 
@@ -30118,11 +30155,6 @@
 	      this.props.dispatch((0, _wineActions.fetchWines)());
 	    }
 	  }, {
-	    key: "addWine",
-	    value: function addWine() {
-	      this.props.dispatch((0, _wineActions.addWine)());
-	    }
-	  }, {
 	    key: "deleteWine",
 	    value: function deleteWine(id) {
 	      console.log(id);
@@ -30142,7 +30174,7 @@
 	        padding: "0"
 	      };
 	      var mappedWines = wines.map(function (wine, index) {
-	        return _react2.default.createElement(_Wine2.default, { onClick: _this2.deleteWine.bind(_this2, wine.id), key: index, id: wine.id, label: wine.name });
+	        return _react2.default.createElement(_Wine2.default, { onClick: _this2.deleteWine.bind(_this2, wine.id), key: index, id: wine.id, label: wine.name, editing: wine.editing });
 	      });
 
 	      return _react2.default.createElement(

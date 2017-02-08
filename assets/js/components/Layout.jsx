@@ -1,10 +1,13 @@
 import React from "react";
 
+//connect to store
 import { connect } from "react-redux";
-import { fetchUser } from "../actions/userActions";
 
+//actions
+import { fetchUser } from "../actions/userActions";
 import { addWine } from "../actions/wineActions";
 
+//components
 import Header from "../components/Header"; 
 import Footer from "../components/Footer"; 
 import WineList from "../components/WineList"; 

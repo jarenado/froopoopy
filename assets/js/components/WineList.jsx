@@ -1,10 +1,13 @@
 import React from 'react'
+
+//connect to store
 import { connect } from "react-redux";
 
+//actions
 import { fetchUser } from "../actions/userActions";
-
 import { fetchWines, addWine, deleteWine } from "../actions/wineActions";
 
+//components
 import Wine from "../components/Wine"; 
 
 @connect((store) => {
@@ -13,13 +16,10 @@ import Wine from "../components/Wine";
     wines: store.wines.wines
   };
 })
+
 class WineList extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchWines())
-  }
-
-  addWine() {
-    this.props.dispatch(addWine())
   }
 
   deleteWine(id) {
@@ -33,7 +33,7 @@ class WineList extends React.Component {
       listStyle: "none",
       padding: "0",
     };
-    const mappedWines = wines.map((wine,index) => <Wine onClick={this.deleteWine.bind(this, wine.id)} key={index} id={wine.id} label={wine.name} />)
+    const mappedWines = wines.map((wine,index) => <Wine onClick={this.deleteWine.bind(this, wine.id)} key={index} id={wine.id} label={wine.name} editing={wine.editing} />)
 
     return (
       <ul style={listStyle}>{mappedWines}</ul>
