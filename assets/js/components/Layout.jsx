@@ -26,14 +26,14 @@ export default class Layout extends React.Component {
     this.props.dispatch(addWine())
   }
   
-  deleteWine(index) {
-    console.log(index);
-    this.props.dispatch(deleteWine(index))
+  deleteWine(id) {
+    console.log(id);
+    this.props.dispatch(deleteWine(id))
   }
 
   render() {
     const { user, wines } = this.props
-    const mappedWines = wines.map((wine,index) => <Wine onClick={this.deleteWine.bind(this, index)} key={index} id={wine.id} label={wine.name} />)
+    const mappedWines = wines.map((wine,index) => <Wine onClick={this.deleteWine.bind(this, wine.id)} key={index} id={wine.id} label={wine.name} />)
     const listStyle = {
       listStyle: "none",
       padding: "0",

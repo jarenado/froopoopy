@@ -28,11 +28,11 @@ export function addWine() {
   }
 }
 
-export function deleteWine(index) {
+export function deleteWine(id) {
   return {
     type: "DELETE_WINE",
     payload: {
-      index,
+      id,
     } 
   }
 }

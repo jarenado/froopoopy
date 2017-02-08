@@ -29650,7 +29650,10 @@
 	      }
 	    case "DELETE_WINE":
 	      {
-	        return _extends({}, state, { wines: [].concat(_toConsumableArray(state.wines)).splice(action.payload, 1) });
+	        console.log(action.payload);
+	        return _extends({}, state, { wines: state.wines.filter(function (wine) {
+	            return wine.id !== action.payload.id;
+	          }) });
 	        break;
 	      }
 	  }
@@ -29733,9 +29736,9 @@
 	    }
 	  }, {
 	    key: "deleteWine",
-	    value: function deleteWine(index) {
-	      console.log(index);
-	      this.props.dispatch((0, _wineActions.deleteWine)(index));
+	    value: function deleteWine(id) {
+	      console.log(id);
+	      this.props.dispatch((0, _wineActions.deleteWine)(id));
 	    }
 	  }, {
 	    key: "render",
@@ -29747,7 +29750,7 @@
 	          wines = _props.wines;
 
 	      var mappedWines = wines.map(function (wine, index) {
-	        return _react2.default.createElement(_Wine2.default, { onClick: _this2.deleteWine.bind(_this2, index), key: index, id: wine.id, label: wine.name });
+	        return _react2.default.createElement(_Wine2.default, { onClick: _this2.deleteWine.bind(_this2, wine.id), key: index, id: wine.id, label: wine.name });
 	      });
 	      var listStyle = {
 	        listStyle: "none",
@@ -29842,11 +29845,11 @@
 	  };
 	}
 
-	function deleteWine(index) {
+	function deleteWine(id) {
 	  return {
 	    type: "DELETE_WINE",
 	    payload: {
-	      index: index
+	      id: id
 	    }
 	  };
 	}
