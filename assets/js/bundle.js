@@ -29697,9 +29697,9 @@
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
-	var _Wine = __webpack_require__(285);
+	var _WineList = __webpack_require__(286);
 
-	var _Wine2 = _interopRequireDefault(_Wine);
+	var _WineList2 = _interopRequireDefault(_WineList);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29727,7 +29727,6 @@
 	    key: "componentWillMount",
 	    value: function componentWillMount() {
 	      this.props.dispatch((0, _userActions.fetchUser)());
-	      this.props.dispatch((0, _wineActions.fetchWines)());
 	    }
 	  }, {
 	    key: "addWine",
@@ -29735,27 +29734,12 @@
 	      this.props.dispatch((0, _wineActions.addWine)());
 	    }
 	  }, {
-	    key: "deleteWine",
-	    value: function deleteWine(id) {
-	      console.log(id);
-	      this.props.dispatch((0, _wineActions.deleteWine)(id));
-	    }
-	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this2 = this;
-
 	      var _props = this.props,
 	          user = _props.user,
 	          wines = _props.wines;
 
-	      var mappedWines = wines.map(function (wine, index) {
-	        return _react2.default.createElement(_Wine2.default, { onClick: _this2.deleteWine.bind(_this2, wine.id), key: index, id: wine.id, label: wine.name });
-	      });
-	      var listStyle = {
-	        listStyle: "none",
-	        padding: "0"
-	      };
 
 	      return _react2.default.createElement(
 	        "div",
@@ -29766,11 +29750,7 @@
 	          null,
 	          "Here are you're wines:"
 	        ),
-	        _react2.default.createElement(
-	          "ul",
-	          { style: listStyle },
-	          mappedWines
-	        ),
+	        _react2.default.createElement(_WineList2.default, { wines: this.props.wines }),
 	        _react2.default.createElement(
 	          "button",
 	          { className: "btn btn-danger", onClick: this.addWine.bind(this) },
@@ -30081,6 +30061,101 @@
 	}(_react2.default.Component);
 
 	exports.default = Wine;
+
+/***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(178);
+
+	var _userActions = __webpack_require__(280);
+
+	var _wineActions = __webpack_require__(281);
+
+	var _Wine = __webpack_require__(285);
+
+	var _Wine2 = _interopRequireDefault(_Wine);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var WineList = (_dec = (0, _reactRedux.connect)(function (store) {
+	  return {
+	    user: store.user.user,
+	    wines: store.wines.wines
+	  };
+	}), _dec(_class = function (_React$Component) {
+	  _inherits(WineList, _React$Component);
+
+	  function WineList() {
+	    _classCallCheck(this, WineList);
+
+	    return _possibleConstructorReturn(this, (WineList.__proto__ || Object.getPrototypeOf(WineList)).apply(this, arguments));
+	  }
+
+	  _createClass(WineList, [{
+	    key: "componentWillMount",
+	    value: function componentWillMount() {
+	      this.props.dispatch((0, _wineActions.fetchWines)());
+	    }
+	  }, {
+	    key: "addWine",
+	    value: function addWine() {
+	      this.props.dispatch((0, _wineActions.addWine)());
+	    }
+	  }, {
+	    key: "deleteWine",
+	    value: function deleteWine(id) {
+	      console.log(id);
+	      this.props.dispatch((0, _wineActions.deleteWine)(id));
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props = this.props,
+	          wines = _props.wines,
+	          user = _props.user;
+
+	      var listStyle = {
+	        listStyle: "none",
+	        padding: "0"
+	      };
+	      var mappedWines = wines.map(function (wine, index) {
+	        return _react2.default.createElement(_Wine2.default, { onClick: _this2.deleteWine.bind(_this2, wine.id), key: index, id: wine.id, label: wine.name });
+	      });
+
+	      return _react2.default.createElement(
+	        "ul",
+	        { style: listStyle },
+	        mappedWines
+	      );
+	    }
+	  }]);
+
+	  return WineList;
+	}(_react2.default.Component)) || _class);
+	exports.default = WineList;
 
 /***/ }
 /******/ ]);
