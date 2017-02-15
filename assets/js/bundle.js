@@ -29643,11 +29643,24 @@
 	        return _extends({}, state, { wines: action.payload });
 	        break;
 	      }
+	    case "UPDATE_WINE":
+	      {
+	        return _extends({}, state, {
+	          wines: state.wines.map(function (wine) {
+	            if (wine.id === action.id) {
+	              return _extends({}, wine, {
+	                label: action.label
+	              });
+	            } else {
+	              return wine;
+	            }
+	          }) });
+	        break;
+	      }
 	    case "TOGGLE_EDIT":
 	      {
 	        return _extends({}, state, {
 	          wines: state.wines.map(function (wine) {
-	            console.log(wine.editing);
 	            if (wine.id === action.id) {
 	              return _extends({}, wine, {
 	                editing: !action.editing
@@ -29821,7 +29834,8 @@
 	exports.fetchWines = fetchWines;
 	exports.addWine = addWine;
 	exports.deleteWine = deleteWine;
-	exports.toggleEdit = toggleEdit;
+	exports.startEdit = startEdit;
+	exports.saveWine = saveWine;
 	function fetchWines() {
 	  return {
 	    type: "FETCH_WINES",
@@ -29860,11 +29874,19 @@
 	  };
 	}
 
-	function toggleEdit(editing, id) {
+	function startEdit(editing, id) {
 	  return {
 	    type: "TOGGLE_EDIT",
 	    id: id,
 	    editing: editing
+	  };
+	}
+
+	function saveWine(id, label) {
+	  return {
+	    type: "UPDATE_WINE",
+	    id: id,
+	    label: label
 	  };
 	}
 
@@ -30159,9 +30181,16 @@
 	      this.props.dispatch((0, _wineActions.deleteWine)(id));
 	    }
 	  }, {
-	    key: 'handleEdit',
-	    value: function handleEdit(editing, id) {
-	      this.props.dispatch((0, _wineActions.toggleEdit)(editing, id));
+	    key: 'startEdit',
+	    value: function startEdit(editing, id) {
+	      this.props.dispatch((0, _wineActions.startEdit)(editing, id));
+	    }
+	  }, {
+	    key: 'saveWine',
+	    value: function saveWine(e) {
+	      var id = e.currentTarget.id;
+	      var label = e.currentTarget.value;
+	      this.props.dispatch((0, _wineActions.saveWine)(id, label));
 	    }
 	  }, {
 	    key: 'renderItemOrEditFields',
@@ -30190,7 +30219,7 @@
 	          _react2.default.createElement(
 	            'span',
 	            null,
-	            _react2.default.createElement('input', { type: 'text', name: label })
+	            _react2.default.createElement('input', { type: 'text', id: id, onChange: this.saveWine.bind(this) })
 	          ),
 	          _react2.default.createElement(
 	            'span',
@@ -30206,8 +30235,8 @@
 	            null,
 	            _react2.default.createElement(
 	              'button',
-	              { onClick: this.handleEdit.bind(this, editing, id), className: 'btn btn-normal' },
-	              'Edit'
+	              { onClick: this.startEdit.bind(this, editing, id), className: 'btn btn-normal' },
+	              'Save'
 	            )
 	          )
 	        );
@@ -30240,7 +30269,7 @@
 	            null,
 	            _react2.default.createElement(
 	              'button',
-	              { onClick: this.handleEdit.bind(this, editing, id), className: 'btn btn-normal' },
+	              { onClick: this.startEdit.bind(this, editing, id), className: 'btn btn-normal' },
 	              'Edit'
 	            )
 	          )

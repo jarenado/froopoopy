@@ -4,11 +4,27 @@ export default function (state={wines:[]}, action) {
       return {...state, wines:action.payload}
       break;
     }
+    case "UPDATE_WINE": {
+      return {
+        ...state,
+        wines: state.wines.map(wine => {
+          if (wine.id === action.id){
+            return {
+              ...wine,
+               label:action.label
+            }
+          } else {
+            return wine
+
+          }
+
+        })}
+      break;
+    }
     case "TOGGLE_EDIT": {
       return {
         ...state,
         wines: state.wines.map(wine => {
-          console.log(wine.editing)
           if (wine.id === action.id){
             return {
               ...wine,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { toggleEdit, fetchWines, addWine, deleteWine } from "../actions/wineActions";
+import { startEdit, saveWine,  fetchWines, addWine, deleteWine } from "../actions/wineActions";
 
 @connect((store) => {
   return {
@@ -14,8 +14,14 @@ class Wine extends React.Component {
     this.props.dispatch(deleteWine(id))
   }
 
-  handleEdit(editing, id) {
-    this.props.dispatch(toggleEdit(editing, id))
+  startEdit(editing, id) {
+    this.props.dispatch(startEdit(editing, id))
+  }
+
+  saveWine(e) {
+    const id = e.currentTarget.id;
+    const label = e.currentTarget.value;
+    this.props.dispatch(saveWine(id, label))
   }
 
   renderItemOrEditFields(wine) {
@@ -30,9 +36,9 @@ class Wine extends React.Component {
       return (
         <div>
           <span>{id}: </span>
-          <span><input type="text" name={label}/></span>
+          <span><input type="text" id={id} onChange={this.saveWine.bind(this)} /></span>
           <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
-          <span><button onClick={this.handleEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></span>
+          <span><button onClick={this.startEdit.bind(this, editing, id)} className="btn btn-normal" >Save</button></span>
         </div>
       );
     } else {
@@ -41,7 +47,7 @@ class Wine extends React.Component {
             <span>{id}: </span>
             <span>{label}</span>
             <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
-            <span><button onClick={this.handleEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></span>
+            <span><button onClick={this.startEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></span>
         </li> 
         );
     }

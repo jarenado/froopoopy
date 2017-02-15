@@ -39,10 +39,18 @@ export function deleteWine(id) {
   }
 }
 
-export function toggleEdit(editing, id) {
+export function startEdit(editing, id) {
   return {
     type: "TOGGLE_EDIT",
     id: id,
     editing: editing,
+  }
+}
+
+export function saveWine(id, label) {
+  return {
+    type: "UPDATE_WINE",
+    id: id,
+    label: label,
   }
 }
