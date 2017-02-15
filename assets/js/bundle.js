@@ -29645,14 +29645,17 @@
 	      }
 	    case "TOGGLE_EDIT":
 	      {
-	        if (action.payload.editing) {
-	          var id = action.payload.id;
-	          return _extends({}, state, {
-	            wines: [].concat(_toConsumableArray(state.wines.id), [{ editing: false }])
-	          });
-	        } else {
-	          console.log('now true');
-	        }
+	        return _extends({}, state, {
+	          wines: state.wines.map(function (wine) {
+	            console.log(wine.editing);
+	            if (wine.id === action.id) {
+	              return _extends({}, wine, {
+	                editing: !action.editing
+	              });
+	            } else {
+	              return wine;
+	            }
+	          }) });
 	        break;
 	      }
 	    case "ADD_WINE":
@@ -29860,10 +29863,8 @@
 	function toggleEdit(editing, id) {
 	  return {
 	    type: "TOGGLE_EDIT",
-	    payload: {
-	      id: id,
-	      editing: editing
-	    }
+	    id: id,
+	    editing: editing
 	  };
 	}
 

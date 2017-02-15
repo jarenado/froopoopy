@@ -41,7 +41,7 @@ class Wine extends React.Component {
             <span>{id}: </span>
             <span>{label}</span>
             <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
-            <span><button onClick={this.handleEdit.bind(this, editing, id)} className="btn btn-normal" >Edit</button></span>
+            <span><button onClick={this.handleEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></span>
         </li> 
         );
     }

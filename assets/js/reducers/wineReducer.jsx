@@ -5,15 +5,21 @@ export default function (state={wines:[]}, action) {
       break;
     }
     case "TOGGLE_EDIT": {
-      if (action.payload.editing) {
-        const id = action.payload.id;
-        return {
-          ...state,
-          wines: [...state.wines.id,  { editing:false } ]
-        }
-      } else {
-        console.log('now true')
-      }
+      return {
+        ...state,
+        wines: state.wines.map(wine => {
+          console.log(wine.editing)
+          if (wine.id === action.id){
+            return {
+              ...wine,
+               editing:!action.editing 
+            }
+          } else {
+            return wine
+
+          }
+
+        })}
       break;
     }
     case "ADD_WINE": {

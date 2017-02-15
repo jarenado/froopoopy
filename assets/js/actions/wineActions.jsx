@@ -42,9 +42,7 @@ export function deleteWine(id) {
 export function toggleEdit(editing, id) {
   return {
     type: "TOGGLE_EDIT",
-    payload: {
-      id: id,
-      editing: editing,
-    } 
+    id: id,
+    editing: editing,
   }
 }
