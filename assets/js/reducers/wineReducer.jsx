@@ -6,8 +6,12 @@ export default function (state={wines:[]}, action) {
     }
     case "TOGGLE_EDIT": {
       if (action.payload.editing) {
-        console.log('now false')
-      }else {
+        const id = action.payload.id;
+        return {
+          ...state,
+          wines: [...state.wines.id,  { editing:false } ]
+        }
+      } else {
         console.log('now true')
       }
       break;
@@ -17,7 +21,6 @@ export default function (state={wines:[]}, action) {
       break;
     }
     case "DELETE_WINE": {
-      console.log(action.payload)
       return {...state, wines: state.wines.filter(wine =>
         wine.id !== action.payload.id
       )}

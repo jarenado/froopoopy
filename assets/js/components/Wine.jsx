@@ -14,8 +14,8 @@ class Wine extends React.Component {
     this.props.dispatch(deleteWine(id))
   }
 
-  handleEdit(editing) {
-    this.props.dispatch(toggleEdit(editing))
+  handleEdit(editing, id) {
+    this.props.dispatch(toggleEdit(editing, id))
   }
 
   renderItemOrEditFields(wine) {
@@ -32,7 +32,7 @@ class Wine extends React.Component {
           <span>{id}: </span>
           <span><input type="text" name={label}/></span>
           <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
-          <span><button onClick={this.handleEdit.bind(this, editing )} className="btn btn-normal" >Edit</button></span>
+          <span><button onClick={this.handleEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></span>
         </div>
       );
     } else {
@@ -41,7 +41,7 @@ class Wine extends React.Component {
             <span>{id}: </span>
             <span>{label}</span>
             <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
-            <span><button onClick={this.handleEdit.bind(this, editing)} className="btn btn-normal" >Edit</button></span>
+            <span><button onClick={this.handleEdit.bind(this, editing, id)} className="btn btn-normal" >Edit</button></span>
         </li> 
         );
     }
