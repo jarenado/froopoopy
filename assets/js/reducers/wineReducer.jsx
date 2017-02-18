@@ -11,7 +11,7 @@ export default function (state={wines:[]}, action) {
           if (wine.id === action.id){
             return {
               ...wine,
-               label:action.label
+               name:action.name
             }
           } else {
             return wine
@@ -28,7 +28,7 @@ export default function (state={wines:[]}, action) {
           if (wine.id === action.id){
             return {
               ...wine,
-               editing:!action.editing 
+               editing:!action.editing
             }
           } else {
             return wine

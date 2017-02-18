@@ -47,10 +47,10 @@ export function startEdit(editing, id) {
   }
 }
 
-export function saveWine(id, label) {
+export function saveWine(id, name) {
   return {
     type: "UPDATE_WINE",
     id: id,
-    label: label,
+    name: name,
   }
 }

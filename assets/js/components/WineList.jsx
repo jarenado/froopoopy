@@ -30,7 +30,7 @@ class WineList extends React.Component {
       listStyle: "none",
       padding: "0",
     };
-    const mappedWines = wines.map((wine,index) => <Wine key={index} id={wine.id} label={wine.name} editing={wine.editing} />)
+    const mappedWines = wines.map((wine,index) => <Wine key={index} id={wine.id} name={wine.name} editing={wine.editing} />)
 
     return (
       <ul style={listStyle}>{mappedWines}</ul>

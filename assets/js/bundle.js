@@ -29649,7 +29649,7 @@
 	          wines: state.wines.map(function (wine) {
 	            if (wine.id === action.id) {
 	              return _extends({}, wine, {
-	                label: action.label
+	                name: action.name
 	              });
 	            } else {
 	              return wine;
@@ -29882,11 +29882,11 @@
 	  };
 	}
 
-	function saveWine(id, label) {
+	function saveWine(id, name) {
 	  return {
 	    type: "UPDATE_WINE",
 	    id: id,
-	    label: label
+	    name: name
 	  };
 	}
 
@@ -30117,7 +30117,7 @@
 	        padding: "0"
 	      };
 	      var mappedWines = wines.map(function (wine, index) {
-	        return _react2.default.createElement(_Wine2.default, { key: index, id: wine.id, label: wine.name, editing: wine.editing });
+	        return _react2.default.createElement(_Wine2.default, { key: index, id: wine.id, name: wine.name, editing: wine.editing });
 	      });
 
 	      return _react2.default.createElement(
@@ -30187,19 +30187,19 @@
 	    }
 	  }, {
 	    key: 'saveWine',
-	    value: function saveWine(e) {
-	      var id = e.currentTarget.id;
-	      var label = e.currentTarget.value;
-	      this.props.dispatch((0, _wineActions.saveWine)(id, label));
+	    value: function saveWine(id, e) {
+	      var name = e.currentTarget.value;
+	      this.props.dispatch((0, _wineActions.saveWine)(id, name));
 	    }
 	  }, {
 	    key: 'renderItemOrEditFields',
-	    value: function renderItemOrEditFields(wine) {
+	    value: function renderItemOrEditFields() {
 	      var _props = this.props,
-	          label = _props.label,
+	          name = _props.name,
 	          id = _props.id,
 	          editing = _props.editing;
 
+	      console.log(this.props);
 	      var listStyle = {
 	        padding: "10px",
 	        border: "thin solid blue",
@@ -30219,7 +30219,7 @@
 	          _react2.default.createElement(
 	            'span',
 	            null,
-	            _react2.default.createElement('input', { type: 'text', id: id, onChange: this.saveWine.bind(this) })
+	            _react2.default.createElement('input', { type: 'text', onChange: this.saveWine.bind(this, id) })
 	          ),
 	          _react2.default.createElement(
 	            'span',
@@ -30253,7 +30253,7 @@
 	          _react2.default.createElement(
 	            'span',
 	            null,
-	            label
+	            name
 	          ),
 	          _react2.default.createElement(
 	            'span',
@@ -30280,7 +30280,7 @@
 	    key: 'render',
 	    value: function render() {
 
-	      return this.renderItemOrEditFields("jsoe");
+	      return this.renderItemOrEditFields();
 	    }
 	  }]);
 

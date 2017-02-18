@@ -18,14 +18,14 @@ class Wine extends React.Component {
     this.props.dispatch(startEdit(editing, id))
   }
 
-  saveWine(e) {
-    const id = e.currentTarget.id;
-    const label = e.currentTarget.value;
-    this.props.dispatch(saveWine(id, label))
+  saveWine(id, e) {
+    const name = e.currentTarget.value;
+    this.props.dispatch(saveWine(id, name))
   }
 
-  renderItemOrEditFields(wine) {
-    const { label, id, editing } = this.props;
+  renderItemOrEditFields() {
+    const { name, id, editing } = this.props;
+      console.log(this.props)
     const listStyle = {
         padding: "10px",
         border: "thin solid blue",
@@ -36,7 +36,7 @@ class Wine extends React.Component {
       return (
         <div>
           <span>{id}: </span>
-          <span><input type="text" id={id} onChange={this.saveWine.bind(this)} /></span>
+          <span><input type="text" onChange={this.saveWine.bind(this, id)} /></span>
           <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
           <span><button onClick={this.startEdit.bind(this, editing, id)} className="btn btn-normal" >Save</button></span>
         </div>
@@ -45,7 +45,7 @@ class Wine extends React.Component {
       return (
         <li style={listStyle}>
             <span>{id}: </span>
-            <span>{label}</span>
+            <span>{name}</span>
             <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
             <span><button onClick={this.startEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></span>
         </li> 
@@ -56,7 +56,7 @@ class Wine extends React.Component {
 
   render() {
 
-    return this.renderItemOrEditFields("jsoe")
+    return this.renderItemOrEditFields()
     
 
   }
