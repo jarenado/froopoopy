@@ -29835,18 +29835,19 @@
 	exports.addWine = addWine;
 	exports.deleteWine = deleteWine;
 	exports.startEdit = startEdit;
-	exports.saveWine = saveWine;
+	exports.updateWine = updateWine;
 	function fetchWines() {
+	  var id = Date.now();
 	  return {
 	    type: "FETCH_WINES",
 	    //todo: get this from database
 	    payload: [{
-	      id: 1,
+	      id: id,
 	      name: "wine one",
 	      vintage: 2014,
 	      editing: true
 	    }, {
-	      id: 2,
+	      id: id + 1,
 	      name: "wine two",
 	      vintage: 2014,
 	      editing: false
@@ -29884,7 +29885,7 @@
 	  };
 	}
 
-	function saveWine(id, name) {
+	function updateWine(id, name) {
 	  return {
 	    type: "UPDATE_WINE",
 	    id: id,
@@ -30188,10 +30189,10 @@
 	      this.props.dispatch((0, _wineActions.startEdit)(editing, id));
 	    }
 	  }, {
-	    key: 'saveWine',
-	    value: function saveWine(id, e) {
+	    key: 'updateWine',
+	    value: function updateWine(id, e) {
 	      var name = e.currentTarget.value;
-	      this.props.dispatch((0, _wineActions.saveWine)(id, name));
+	      this.props.dispatch((0, _wineActions.updateWine)(id, name));
 	    }
 	  }, {
 	    key: 'renderItemOrEditFields',
@@ -30221,7 +30222,7 @@
 	          _react2.default.createElement(
 	            'span',
 	            null,
-	            _react2.default.createElement('input', { type: 'text', value: name, onChange: this.saveWine.bind(this, id) })
+	            _react2.default.createElement('input', { type: 'text', value: name, onChange: this.updateWine.bind(this, id) })
 	          ),
 	          _react2.default.createElement(
 	            'span',

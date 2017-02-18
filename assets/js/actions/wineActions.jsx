@@ -1,16 +1,17 @@
 export function fetchWines() {
+  const id = Date.now()
   return {
     type: "FETCH_WINES",
     //todo: get this from database
     payload: [
       {
-        id: 1,
+        id: id ,
         name: "wine one",
         vintage: 2014,
 	editing: true,
       },
       {
-	id: 2,
+	id: id + 1,
         name: "wine two",
         vintage: 2014,
 	editing: false,
@@ -49,7 +50,7 @@ export function startEdit(editing, id) {
   }
 }
 
-export function saveWine(id, name) {
+export function updateWine(id, name) {
   return {
     type: "UPDATE_WINE",
     id: id,
