@@ -24,30 +24,37 @@ class Wine extends React.Component {
   }
 
   renderItemOrEditFields() {
-    const { name, id, editing } = this.props;
-    const listStyle = {
-        padding: "10px",
-        border: "thin solid blue",
-        marginTop: "5px",
-    }; 
+    const { name, id, editing, index } = this.props;
+
+      /* const tableStyle = {
+       *     padding: "10px",
+       *     width: "100%",
+       *     border: "thin solid blue",
+       *     marginTop: "5px",
+       * }; 
+       */
+    const inputStyle = {
+      width: "200px",
+    }
+
 
     if (editing) {
       return (
-        <div>
-          <span>{id}: </span>
-          <span><input type="text" value={name} onChange={this.updateWine.bind(this, id)} /></span>
-          <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
-          <span><button onClick={this.startEdit.bind(this, editing, id)} className="btn btn-normal" >Save</button></span>
-        </div>
+        <tr>
+          <td>{index + 1}: </td>
+          <td><input type="text" value={name} onChange={this.updateWine.bind(this, id)} /></td>
+          <td><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></td>
+          <td><button onClick={this.startEdit.bind(this, editing, id)} className="btn btn-normal" >Save</button></td>
+        </tr>
       );
     } else {
       return (
-        <li style={listStyle}>
-            <span>{id}: </span>
-            <span>{name}</span>
-            <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
-            <span><button onClick={this.startEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></span>
-        </li> 
+        <tr>
+            <td>{index + 1}: </td>
+            <td style={inputStyle}>{name}</td>
+            <td><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></td>
+            <td><button onClick={this.startEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></td>
+        </tr> 
         );
     }
 

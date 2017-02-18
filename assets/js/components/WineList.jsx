@@ -26,14 +26,21 @@ class WineList extends React.Component {
 
   render () {
     const {wines, user} = this.props
-    const listStyle = {
-      listStyle: "none",
-      padding: "0",
-    };
-    const mappedWines = wines.map((wine,index) => <Wine key={index} id={wine.id} name={wine.name} editing={wine.editing} />)
+    const tableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+    const mappedWines = wines.map((wine,index) => <Wine key={index} index={index} id={wine.id} name={wine.name} editing={wine.editing} />)
 
     return (
-      <ul style={listStyle}>{mappedWines}</ul>
+      <table className={tableClass}>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Label</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mappedWines}
+        </tbody>
+      </table>
     );
   }
     

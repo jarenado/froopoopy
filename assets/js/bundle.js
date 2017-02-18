@@ -29862,19 +29862,7 @@
 	function fetchWines() {
 	  var id = Date.now();
 	  return {
-	    type: "FETCH_WINES",
-	    //todo: get this from database
-	    payload: [{
-	      id: id,
-	      name: "wine one",
-	      vintage: 2014,
-	      editing: true
-	    }, {
-	      id: id + 1,
-	      name: "wine two",
-	      vintage: 2014,
-	      editing: false
-	    }]
+	    type: "FETCH_WINES"
 	  };
 	}
 
@@ -30138,18 +30126,33 @@
 	          wines = _props.wines,
 	          user = _props.user;
 
-	      var listStyle = {
-	        listStyle: "none",
-	        padding: "0"
-	      };
+	      var tableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp";
 	      var mappedWines = wines.map(function (wine, index) {
-	        return _react2.default.createElement(_Wine2.default, { key: index, id: wine.id, name: wine.name, editing: wine.editing });
+	        return _react2.default.createElement(_Wine2.default, { key: index, index: index, id: wine.id, name: wine.name, editing: wine.editing });
 	      });
 
 	      return _react2.default.createElement(
-	        "ul",
-	        { style: listStyle },
-	        mappedWines
+	        "table",
+	        { className: tableClass },
+	        _react2.default.createElement(
+	          "thead",
+	          null,
+	          _react2.default.createElement(
+	            "tr",
+	            null,
+	            _react2.default.createElement("th", null),
+	            _react2.default.createElement(
+	              "th",
+	              null,
+	              "Label"
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "tbody",
+	          null,
+	          mappedWines
+	        )
 	      );
 	    }
 	  }]);
@@ -30223,31 +30226,38 @@
 	      var _props = this.props,
 	          name = _props.name,
 	          id = _props.id,
-	          editing = _props.editing;
+	          editing = _props.editing,
+	          index = _props.index;
 
-	      var listStyle = {
-	        padding: "10px",
-	        border: "thin solid blue",
-	        marginTop: "5px"
+	      /* const tableStyle = {
+	       *     padding: "10px",
+	       *     width: "100%",
+	       *     border: "thin solid blue",
+	       *     marginTop: "5px",
+	       * }; 
+	       */
+
+	      var inputStyle = {
+	        width: "200px"
 	      };
 
 	      if (editing) {
 	        return _react2.default.createElement(
-	          'div',
+	          'tr',
 	          null,
 	          _react2.default.createElement(
-	            'span',
+	            'td',
 	            null,
-	            id,
+	            index + 1,
 	            ': '
 	          ),
 	          _react2.default.createElement(
-	            'span',
+	            'td',
 	            null,
 	            _react2.default.createElement('input', { type: 'text', value: name, onChange: this.updateWine.bind(this, id) })
 	          ),
 	          _react2.default.createElement(
-	            'span',
+	            'td',
 	            null,
 	            _react2.default.createElement(
 	              'button',
@@ -30256,7 +30266,7 @@
 	            )
 	          ),
 	          _react2.default.createElement(
-	            'span',
+	            'td',
 	            null,
 	            _react2.default.createElement(
 	              'button',
@@ -30267,21 +30277,21 @@
 	        );
 	      } else {
 	        return _react2.default.createElement(
-	          'li',
-	          { style: listStyle },
+	          'tr',
+	          null,
 	          _react2.default.createElement(
-	            'span',
+	            'td',
 	            null,
-	            id,
+	            index + 1,
 	            ': '
 	          ),
 	          _react2.default.createElement(
-	            'span',
-	            null,
+	            'td',
+	            { style: inputStyle },
 	            name
 	          ),
 	          _react2.default.createElement(
-	            'span',
+	            'td',
 	            null,
 	            _react2.default.createElement(
 	              'button',
@@ -30290,7 +30300,7 @@
 	            )
 	          ),
 	          _react2.default.createElement(
-	            'span',
+	            'td',
 	            null,
 	            _react2.default.createElement(
 	              'button',
@@ -31811,24 +31821,24 @@
 		"wines": {
 			"wines": [
 				{
-					"id": 11231823,
-					"name": "wine 1"
+					"id": 1123182323223,
+					"name": "P.joguet Chinon"
 				},
 				{
-					"id": 24340011,
-					"name": "wine 2"
+					"id": 2434001139392,
+					"name": "Wilshermitage"
 				},
 				{
-					"id": 13122431,
-					"name": "wine 3"
+					"id": 1312243113331,
+					"name": "Chateau Wilshire"
 				},
 				{
-					"id": 13192931,
-					"name": "wine 4"
+					"id": 1319291212131,
+					"name": "Another Long Name"
 				},
 				{
-					"id": 13122131,
-					"name": "wine 5"
+					"id": 1487458169212,
+					"name": "DRC YO"
 				}
 			]
 		}
