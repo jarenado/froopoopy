@@ -29839,6 +29839,7 @@
 	function fetchWines() {
 	  return {
 	    type: "FETCH_WINES",
+	    //todo: get this from database
 	    payload: [{
 	      id: 1,
 	      name: "wine one",
@@ -29859,8 +29860,9 @@
 	    type: "ADD_WINE",
 	    payload: {
 	      id: id,
-	      name: "wine three",
-	      vintage: 2016
+	      name: "",
+	      vintage: 2016,
+	      editing: true
 	    }
 	  };
 	}
@@ -30219,7 +30221,7 @@
 	          _react2.default.createElement(
 	            'span',
 	            null,
-	            _react2.default.createElement('input', { type: 'text', onChange: this.saveWine.bind(this, id) })
+	            _react2.default.createElement('input', { type: 'text', value: name, onChange: this.saveWine.bind(this, id) })
 	          ),
 	          _react2.default.createElement(
 	            'span',

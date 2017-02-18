@@ -36,7 +36,7 @@ class Wine extends React.Component {
       return (
         <div>
           <span>{id}: </span>
-          <span><input type="text" onChange={this.saveWine.bind(this, id)} /></span>
+          <span><input type="text" value={name} onChange={this.saveWine.bind(this, id)} /></span>
           <span><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></span>
           <span><button onClick={this.startEdit.bind(this, editing, id)} className="btn btn-normal" >Save</button></span>
         </div>

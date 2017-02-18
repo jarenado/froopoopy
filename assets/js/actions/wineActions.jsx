@@ -1,6 +1,7 @@
 export function fetchWines() {
   return {
     type: "FETCH_WINES",
+    //todo: get this from database
     payload: [
       {
         id: 1,
@@ -24,8 +25,9 @@ export function addWine() {
     type: "ADD_WINE",
     payload: {
       id,
-      name: "wine three",
+      name: "",
       vintage: 2016,
+      editing: true,
     } 
   }
 }
