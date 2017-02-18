@@ -30238,7 +30238,11 @@
 	       */
 
 	      var inputStyle = {
-	        width: "200px"
+	        width: "300px"
+	      };
+
+	      var buttonStyle = {
+	        width: "80px"
 	      };
 
 	      if (editing) {
@@ -30253,7 +30257,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'td',
-	            null,
+	            { style: inputStyle },
 	            _react2.default.createElement('input', { type: 'text', value: name, onChange: this.updateWine.bind(this, id) })
 	          ),
 	          _react2.default.createElement(
@@ -30270,7 +30274,7 @@
 	            null,
 	            _react2.default.createElement(
 	              'button',
-	              { onClick: this.startEdit.bind(this, editing, id), className: 'btn btn-normal' },
+	              { style: buttonStyle, onClick: this.startEdit.bind(this, editing, id), className: 'btn btn-normal' },
 	              'Save'
 	            )
 	          )
@@ -30304,7 +30308,7 @@
 	            null,
 	            _react2.default.createElement(
 	              'button',
-	              { onClick: this.startEdit.bind(this, editing, id), className: 'btn btn-normal' },
+	              { style: buttonStyle, onClick: this.startEdit.bind(this, editing, id), className: 'btn btn-normal' },
 	              'Edit'
 	            )
 	          )
