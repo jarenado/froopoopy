@@ -25,7 +25,6 @@ class Wine extends React.Component {
 
   renderItemOrEditFields() {
     const { name, id, editing } = this.props;
-      console.log(this.props)
     const listStyle = {
         padding: "10px",
         border: "thin solid blue",

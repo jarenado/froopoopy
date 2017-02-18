@@ -1,0 +1,13 @@
+{
+  "users": {},
+  "wines": {
+    "wines": [
+      {"id": 11231823, "name": "wine 1"},
+      {"id": 24340011, "name": "wine 2"},
+      {"id": 13122431, "name": "wine 3"},
+      {"id": 13192931, "name": "wine 4"},
+      {"id": 13122131, "name": "wine 5"}
+
+    ]
+  }
+}

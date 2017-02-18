@@ -12,6 +12,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer"; 
 import WineList from "../components/WineList"; 
 
+import axios from "axios"
+/* var winesjson = require("../wines.json")*/
+import winesjson from "../wines.json"
+
 @connect((store) => {
   return {
     user: store.user.user,
@@ -22,6 +26,7 @@ import WineList from "../components/WineList";
 export default class Layout extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchUser())
+      console.log(winesjson)
   }
 
   addWine() {
@@ -30,7 +35,6 @@ export default class Layout extends React.Component {
 
   render() {
     const { user, wines } = this.props
-
     return (
       <div className="container-fluid">
         <Header title={user.name} />
