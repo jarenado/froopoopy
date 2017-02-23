@@ -20,11 +20,23 @@ module.exports = {
       {
 	test: /\.json$/, 
 	loader: 'json-loader',
+      },
+      {
+	test: /\.scss$/, 
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "sass-loader" // compiles Sass to CSS
+        }]
+        // exclude: /(node_modules|bower_components)/,
+        // loaders : ['style-loader', 'sass-loader', 'css-loader']
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new BrowserSyncPlugin({

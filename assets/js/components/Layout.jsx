@@ -16,6 +16,8 @@ import axios from "axios"
 /* var winesjson = require("../wines.json")*/
 import winesjson from "../wines.json"
 
+require("../sass/style.scss");
+
 @connect((store) => {
   return {
     user: store.user.user,
@@ -36,13 +38,15 @@ export default class Layout extends React.Component {
   render() {
     const { user, wines } = this.props
     return (
-      <div className="container-fluid">
-        <Header title={user.name} />
-        <p>Here are you're wines:</p>
-        <WineList wines={this.props.wines} />
-        <button className="btn btn-danger" onClick={this.addWine.bind(this)}>Add Wine</button>
-        <Footer />
-      </div>
+	<div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	    <div className="mdl-layout__container">
+		<Header title={user.name} />
+		<p>Welcome, {user.name}. Here are you're wines:</p>
+		<WineList wines={this.props.wines} />
+		<button className="btn btn-danger" onClick={this.addWine.bind(this)}>Add Wine</button>
+		<Footer />
+	    </div>
+	</div>
     )
   }
 }
