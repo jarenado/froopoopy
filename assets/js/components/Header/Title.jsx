@@ -2,10 +2,10 @@ import React from 'react';
 
 class Title extends React.Component {
   render() {
-    const headerClass = "mdl-layout__header is-casting-shadow"
+    const headerClass = "mdl-layout-title"
     return (
       <header className={headerClass}>
-	<h1>ListoVino</h1>
+	ListoVino
       </header>
     );
   }

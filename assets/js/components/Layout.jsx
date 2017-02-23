@@ -37,16 +37,27 @@ export default class Layout extends React.Component {
 
   render() {
     const { user, wines } = this.props
+    const buttonClass = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+
     return (
-	<div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-	    <div className="mdl-layout__container">
+	    <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 		<Header title={user.name} />
-		<p>Welcome, {user.name}. Here are you're wines:</p>
-		<WineList wines={this.props.wines} />
-		<button className="btn btn-danger" onClick={this.addWine.bind(this)}>Add Wine</button>
+		<div className="mdl-layout__drawer">
+		    <span className="mdl-layout-title">Settings</span>
+		    <nav className="mdl-navigation">
+			<a className="mdl-navigation__link"></a>
+			<a className="mdl-navigation__link">Link</a>
+			<a className="mdl-navigation__link">Link</a>
+			<a className="mdl-navigation__link">Link</a>
+		    </nav>
+		</div>
+		<main class="mdl-layout__content">
+		    <p>Welcome, {user.name}. Here are you're wines:</p>
+		    <WineList wines={this.props.wines} />
+		    <button className={buttonClass} onClick={this.addWine.bind(this)}>Add Wine</button>
+		</main>
 		<Footer />
 	    </div>
-	</div>
     )
   }
 }
