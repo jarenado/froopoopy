@@ -36,27 +36,24 @@ class Wine extends React.Component {
     const inputStyle = {
       width: "300px",
     }
-
-    const buttonStyle = {
-      width: "80px",
-    }
+    const buttonClass = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
 
     if (editing) {
       return (
         <tr>
           <td>{index + 1}: </td>
-          <td style={inputStyle}><input type="text" value={name} onChange={this.updateWine.bind(this, id)} /></td>
-          <td><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></td>
-          <td><button style={buttonStyle} onClick={this.startEdit.bind(this, editing, id)} className="btn btn-normal" >Save</button></td>
+          <td><input type="text" value={name} onChange={this.updateWine.bind(this, id)} /></td>
+          <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
+          <td><button onClick={this.startEdit.bind(this, editing, id)} className={buttonClass} >Save</button></td>
         </tr>
       );
     } else {
       return (
         <tr>
             <td>{index + 1}: </td>
-            <td style={inputStyle}>{name}</td>
-            <td><button onClick={this.deleteWine.bind(this, id)} className="btn btn-normal" >Delete</button></td>
-            <td><button style={buttonStyle} onClick={this.startEdit.bind(this, editing, id )} className="btn btn-normal" >Edit</button></td>
+            <td>{name}</td>
+            <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
+            <td><button onClick={this.startEdit.bind(this, editing, id )} className={buttonClass} >Edit</button></td>
         </tr> 
         );
     }

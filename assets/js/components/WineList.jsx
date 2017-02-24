@@ -30,7 +30,7 @@ class WineList extends React.Component {
     const mappedWines = wines.map((wine,index) => <Wine key={index} index={index} id={wine.id} name={wine.name} editing={wine.editing} />)
 
     return (
-      <table className={tableClass}>
+      <table id="my-table" className={tableClass}>
         <thead>
           <tr>
             <th></th>

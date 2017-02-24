@@ -2,8 +2,11 @@ import React from 'react';
 
 class Title extends React.Component {
   render() {
+    const headerClass = "mdl-layout-title"
     return (
-      <h1>Welcome, {this.props.title}!</h1>
+      <header className={headerClass}>
+	ListoVino
+      </header>
     );
   }
 }
