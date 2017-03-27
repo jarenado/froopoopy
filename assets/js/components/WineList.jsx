@@ -26,8 +26,9 @@ class WineList extends React.Component {
 
   render () {
     const {wines, user} = this.props
+    console.log(Object.entries(wines))
     const tableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp"
-    const mappedWines = wines.map((wine,index) => <Wine key={index} index={index} id={wine.id} name={wine.name} editing={wine.editing} />)
+    const mappedWines = Object.entries(wines).map((wine,index) => <Wine key={index} index={index} id={wine[1].id} name={wine[1].name} editing={wine.editing} />)
 
     return (
       <table id="my-table" className={tableClass}>

@@ -3,7 +3,6 @@ import database from './database.js';
 export function fetchWines() {
   return dispatch => {
     database.ref('wines').on('value', snapshot => {
-      console.log(snapshot.val())
       dispatch({
         type: "FETCH_WINES",
         payload: snapshot.val()
@@ -14,16 +13,25 @@ export function fetchWines() {
 
 
 export function addWine() {
-  const id = Date.now();
-  return {
-    type: "ADD_WINE",
-    payload: {
-      id,
-      name: "",
-      vintage: 2016,
-      editing: true,
-    } 
+  return dispatch => {
+  const payload = {
+     name: "this is the name",
+     vintage: 2016,
+     editing: true,
+   }
+  database.ref('wines/wines').push(payload)
   }
+
+
+  /* return {*/
+  /* type: "ADD_WINE",*/
+  /* payload: {*/
+  /* id,*/
+  /* name: "",*/
+  /* vintage: 2016,*/
+  /* editing: true,*/
+  /* } */
+  /* }*/
 }
 
 export function deleteWine(id) {

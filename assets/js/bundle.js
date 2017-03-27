@@ -5928,7 +5928,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function fetchWines() {
   return function (dispatch) {
     _database2.default.ref('wines').on('value', function (snapshot) {
-      console.log(snapshot.val());
       dispatch({
         type: "FETCH_WINES",
         payload: snapshot.val()
@@ -5938,16 +5937,24 @@ function fetchWines() {
 }
 
 function addWine() {
-  var id = Date.now();
-  return {
-    type: "ADD_WINE",
-    payload: {
-      id: id,
-      name: "",
+  return function (dispatch) {
+    var payload = {
+      name: "this is the name",
       vintage: 2016,
       editing: true
-    }
+    };
+    _database2.default.ref('wines/wines').push(payload);
   };
+
+  /* return {*/
+  /* type: "ADD_WINE",*/
+  /* payload: {*/
+  /* id,*/
+  /* name: "",*/
+  /* vintage: 2016,*/
+  /* editing: true,*/
+  /* } */
+  /* }*/
 }
 
 function deleteWine(id) {
@@ -15344,9 +15351,10 @@ var WineList = (_dec = (0, _reactRedux.connect)(function (store) {
           wines = _props.wines,
           user = _props.user;
 
+      console.log(Object.entries(wines));
       var tableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp";
-      var mappedWines = wines.map(function (wine, index) {
-        return _react2.default.createElement(_Wine2.default, { key: index, index: index, id: wine.id, name: wine.name, editing: wine.editing });
+      var mappedWines = Object.entries(wines).map(function (wine, index) {
+        return _react2.default.createElement(_Wine2.default, { key: index, index: index, id: wine[1].id, name: wine[1].name, editing: wine.editing });
       });
 
       return _react2.default.createElement(
