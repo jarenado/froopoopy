@@ -1,11 +1,9 @@
-import json from "../wines.json"
 
 export default function (state={wines:[]}, action) {
   switch(action.type) {
 
     case "FETCH_WINES": {
-      const winejson = json.wines.wines
-      return {...state, wines: winejson}
+      return {...state, wines: action.payload.wines}
       break;
     }
 

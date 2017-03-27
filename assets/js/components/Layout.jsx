@@ -51,7 +51,7 @@ export default class Layout extends React.Component {
 			<a className="mdl-navigation__link">Link</a>
 		    </nav>
 		</div>
-		<main class="mdl-layout__content">
+		<main className="mdl-layout__content">
 		    <p>Welcome, {user.name}. Here are you're wines:</p>
 		    <WineList wines={this.props.wines} />
 		    <button className={buttonClass} onClick={this.addWine.bind(this)}>Add Wine</button>

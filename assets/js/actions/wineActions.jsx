@@ -1,9 +1,16 @@
+import database from './database.js';
+
 export function fetchWines() {
-  const id = Date.now()
-  return {
-    type: "FETCH_WINES",
+  return dispatch => {
+    database.ref('wines').on('value', snapshot => {
+      dispatch({
+        type: "FETCH_WINES",
+        payload: snapshot.val()
+      })
+    });
   }
 }
+
 
 export function addWine() {
   const id = Date.now();
