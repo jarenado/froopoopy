@@ -13,8 +13,6 @@ import Footer from "../components/Footer";
 import WineList from "../components/WineList"; 
 
 import axios from "axios"
-/* var winesjson = require("../wines.json")*/
-import winesjson from "../wines.json"
 
 require("../sass/style.scss");
 
@@ -28,7 +26,6 @@ require("../sass/style.scss");
 export default class Layout extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchUser())
-      console.log(winesjson)
   }
 
   addWine() {
