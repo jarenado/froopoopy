@@ -1,10 +1,20 @@
-import json from "../wines.json"
+import database from "../actions/database.js"
 
 export default function (state={wines:[]}, action) {
   switch(action.type) {
 
     case "FETCH_WINES": {
-      const winejson = json.wines.wines
+      var winejson = [];
+      database.ref('wines/wines').on('value', function(snap){
+        snap.val().forEach(function(key){
+          winejson.push({
+            id: key.id,
+            name: key.name
+          })
+          return winejson
+        })
+      })
+      console.log('after', winejson)
       return {...state, wines: winejson}
       break;
     }

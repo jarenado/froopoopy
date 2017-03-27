@@ -1,13 +1,11 @@
 {
   "users": {},
-  "wines": {
     "wines": [
-      {"id": 1123182323223, "name": "P.joguet Chinon"},
-      {"id": 2434001139392, "name": "Wilshermitage"},
-      {"id": 1312243113331, "name": "Chateau Wilshire"},
-      {"id": 1319291212131, "name": "Another Long Name"},
-      {"id": 1487458169212, "name": "DRC YO"}
+	{"id": 1123182323223, "name": "P.joguet Chinon"},
+	{"id": 2434001139392, "name": "Wilshermitage"},
+	{"id": 1312243113331, "name": "Chateau Wilshire"},
+	{"id": 1319291212131, "name": "Another Long Name"},
+	{"id": 1487458169212, "name": "DRC YO"}
 
     ]
-  }
 }

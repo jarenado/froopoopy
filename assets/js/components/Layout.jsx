@@ -13,8 +13,8 @@ import Footer from "../components/Footer";
 import WineList from "../components/WineList"; 
 
 import axios from "axios"
-/* var winesjson = require("../wines.json")*/
-import winesjson from "../wines.json"
+
+import database from "../actions/database.js"
 
 require("../sass/style.scss");
 
@@ -28,7 +28,6 @@ require("../sass/style.scss");
 export default class Layout extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchUser())
-      console.log(winesjson)
   }
 
   addWine() {
@@ -51,7 +50,7 @@ export default class Layout extends React.Component {
 			<a className="mdl-navigation__link">Link</a>
 		    </nav>
 		</div>
-		<main class="mdl-layout__content">
+		<main className="mdl-layout__content">
 		    <p>Welcome, {user.name}. Here are you're wines:</p>
 		    <WineList wines={this.props.wines} />
 		    <button className={buttonClass} onClick={this.addWine.bind(this)}>Add Wine</button>

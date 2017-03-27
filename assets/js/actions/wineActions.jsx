@@ -12,7 +12,6 @@ export function addWine() {
     payload: {
       id,
       name: "",
-      vintage: 2016,
       editing: true,
     } 
   }
