@@ -16,16 +16,13 @@ class Wine extends React.Component {
 
   startEdit(editing, id) {
       /* this.props.dispatch(startEdit(editing, id))*/
-    var dialog = document.querySelector('dialog');
+    const dialog = document.querySelector('dialog');
 
     if (! dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
     }
 
     dialog.showModal();
-    dialog.querySelector('.close').addEventListener('click', function() {
-      dialog.close();
-    });
   }
 
   updateWine(id, e) {
@@ -35,23 +32,15 @@ class Wine extends React.Component {
 
   renderItemOrEditFields() {
     const { name, id, editing, index } = this.props;
-
-      /* const tableStyle = {
-       *     padding: "10px",
-       *     width: "100%",
-       *     border: "thin solid blue",
-       *     marginTop: "5px",
-       * }; 
-       */
     const inputStyle = {
       width: "300px",
     }
+
     const buttonClass = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
 
     if (editing) {
       return (
         <tr>
-          <td>{index + 1}: </td>
           <td><input type="text" value={name} onChange={this.updateWine.bind(this, id)} /></td>
           <td><button id="show-dialog" onClick={this.startEdit.bind(this, editing, id)} className={buttonClass} >Save</button></td>
         </tr>
@@ -59,7 +48,6 @@ class Wine extends React.Component {
     } else {
       return (
         <tr>
-            <td>{index + 1}: </td>
             <td>{name}</td>
             <td><button onClick={this.startEdit.bind(this, editing, id )} className={buttonClass} >Edit</button></td>
         </tr> 

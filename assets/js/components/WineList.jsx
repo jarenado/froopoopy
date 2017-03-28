@@ -9,6 +9,7 @@ import { fetchWines, addWine, deleteWine } from "../actions/wineActions";
 
 //components
 import Wine from "../components/Wine"; 
+import Modal from "../components/Modal"; 
 
 @connect((store) => {
   return {
@@ -40,20 +41,10 @@ class WineList extends React.Component {
             {mappedWines}
             </tbody>
         </table>
-	<dialog className="mdl-dialog">
-	    <div className="mdl-dialog__content">
-		<p>
-		    Allow this site to collect usage data to improve your experience?
-		</p>
-	    </div>
-	    <div className="mdl-dialog__actions mdl-dialog__actions--full-width">
-		<input type="text" />
-
-		<input type="text" />
-		<button type="button" className="mdl-button">Agree</button>
-		<button type="button" className="mdl-button close">Disagree</button>
-	    </div>
-	</dialog>
+	<Modal>
+          <h1>Modal title</h1>
+          <p>hello</p>
+	</Modal>
       </div>
     );
   }
