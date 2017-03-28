@@ -26,29 +26,43 @@ class WineList extends React.Component {
   render () {
     const {wines, user} = this.props
     const tableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp"
-    const mappedWines = Object.entries(wines).map((wine,index) => <Wine key={wine[0]} index={index} id={wine[0]} name={wine[1].name} editing={wine.editing} />)
+    const mappedWines = Object.entries(wines).map((wine,index) =>
+      <Wine key={wine[0]}
+            index={index}
+            id={wine[0]}
+            name={wine[1].name}
+            editing={wine.editing} />)
 
     return (
       <div>
         <table id="my-table" className={tableClass}>
-            <thead>
+          <thead>
             <tr>
-                <th></th>
-                <th>Label</th>
+              <th></th>
+              <th>Label</th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             {mappedWines}
-            </tbody>
+          </tbody>
         </table>
-	<Modal>
-          <h1>Modal title</h1>
-          <p>hello</p>
-	</Modal>
+        <Modal>
+          <h1>Edit Wine</h1>
+          <form action="#">
+            <div className="mdl-textfield mdl-js-textfield">
+              <input className="mdl-textfield__input" type="text" id="sample1" />
+                <label className="mdl-textfield__label" htmlFor="sample1">Name...</label>
+            </div>
+            <div className="mdl-textfield mdl-js-textfield">
+              <input className="mdl-textfield__input" type="text" id="sample1" />
+                <label className="mdl-textfield__label" htmlFor="sample1">Vintage</label>
+            </div>
+          </form>
+        </Modal>
       </div>
     );
   }
-    
+  
 }
 
 export default WineList;
