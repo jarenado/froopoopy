@@ -15,7 +15,17 @@ class Wine extends React.Component {
   }
 
   startEdit(editing, id) {
-    this.props.dispatch(startEdit(editing, id))
+      /* this.props.dispatch(startEdit(editing, id))*/
+    var dialog = document.querySelector('dialog');
+
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+
+    dialog.showModal();
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
   }
 
   updateWine(id, e) {
@@ -43,8 +53,7 @@ class Wine extends React.Component {
         <tr>
           <td>{index + 1}: </td>
           <td><input type="text" value={name} onChange={this.updateWine.bind(this, id)} /></td>
-          <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
-          <td><button onClick={this.startEdit.bind(this, editing, id)} className={buttonClass} >Save</button></td>
+          <td><button id="show-dialog" onClick={this.startEdit.bind(this, editing, id)} className={buttonClass} >Save</button></td>
         </tr>
       );
     } else {
@@ -52,7 +61,6 @@ class Wine extends React.Component {
         <tr>
             <td>{index + 1}: </td>
             <td>{name}</td>
-            <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
             <td><button onClick={this.startEdit.bind(this, editing, id )} className={buttonClass} >Edit</button></td>
         </tr> 
         );

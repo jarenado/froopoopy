@@ -5945,24 +5945,11 @@ function addWine() {
     };
     _database2.default.ref('wines/wines').push(payload);
   };
-
-  /* return {*/
-  /* type: "ADD_WINE",*/
-  /* payload: {*/
-  /* id,*/
-  /* name: "",*/
-  /* vintage: 2016,*/
-  /* editing: true,*/
-  /* } */
-  /* }*/
 }
 
 function deleteWine(id) {
-  return {
-    type: "DELETE_WINE",
-    payload: {
-      id: id
-    }
+  return function (dispatch) {
+    return _database2.default.ref('wines/wines').child(id).remove();
   };
 }
 
@@ -15167,7 +15154,17 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
   }, {
     key: 'startEdit',
     value: function startEdit(editing, id) {
-      this.props.dispatch((0, _wineActions.startEdit)(editing, id));
+      /* this.props.dispatch(startEdit(editing, id))*/
+      var dialog = document.querySelector('dialog');
+
+      if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+      }
+
+      dialog.showModal();
+      dialog.querySelector('.close').addEventListener('click', function () {
+        dialog.close();
+      });
     }
   }, {
     key: 'updateWine',
@@ -15217,16 +15214,7 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
             null,
             _react2.default.createElement(
               'button',
-              { onClick: this.deleteWine.bind(this, id), className: buttonClass },
-              'Delete'
-            )
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement(
-              'button',
-              { onClick: this.startEdit.bind(this, editing, id), className: buttonClass },
+              { id: 'show-dialog', onClick: this.startEdit.bind(this, editing, id), className: buttonClass },
               'Save'
             )
           )
@@ -15245,15 +15233,6 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
             'td',
             null,
             name
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement(
-              'button',
-              { onClick: this.deleteWine.bind(this, id), className: buttonClass },
-              'Delete'
-            )
           ),
           _react2.default.createElement(
             'td',
@@ -15351,33 +15330,65 @@ var WineList = (_dec = (0, _reactRedux.connect)(function (store) {
           wines = _props.wines,
           user = _props.user;
 
-      console.log(Object.entries(wines));
       var tableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp";
       var mappedWines = Object.entries(wines).map(function (wine, index) {
-        return _react2.default.createElement(_Wine2.default, { key: index, index: index, id: wine[1].id, name: wine[1].name, editing: wine.editing });
+        return _react2.default.createElement(_Wine2.default, { key: wine[0], index: index, id: wine[0], name: wine[1].name, editing: wine.editing });
       });
 
       return _react2.default.createElement(
-        "table",
-        { id: "my-table", className: tableClass },
+        "div",
+        null,
         _react2.default.createElement(
-          "thead",
-          null,
+          "table",
+          { id: "my-table", className: tableClass },
           _react2.default.createElement(
-            "tr",
+            "thead",
             null,
-            _react2.default.createElement("th", null),
             _react2.default.createElement(
-              "th",
+              "tr",
               null,
-              "Label"
+              _react2.default.createElement("th", null),
+              _react2.default.createElement(
+                "th",
+                null,
+                "Label"
+              )
             )
+          ),
+          _react2.default.createElement(
+            "tbody",
+            null,
+            mappedWines
           )
         ),
         _react2.default.createElement(
-          "tbody",
-          null,
-          mappedWines
+          "dialog",
+          { className: "mdl-dialog" },
+          _react2.default.createElement(
+            "div",
+            { className: "mdl-dialog__content" },
+            _react2.default.createElement(
+              "p",
+              null,
+              "Allow this site to collect usage data to improve your experience?"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "mdl-dialog__actions mdl-dialog__actions--full-width" },
+            _react2.default.createElement("input", { type: "text" }),
+            _react2.default.createElement("input", { type: "text" }),
+            _react2.default.createElement(
+              "button",
+              { type: "button", className: "mdl-button" },
+              "Agree"
+            ),
+            _react2.default.createElement(
+              "button",
+              { type: "button", className: "mdl-button close" },
+              "Disagree"
+            )
+          )
         )
       );
     }

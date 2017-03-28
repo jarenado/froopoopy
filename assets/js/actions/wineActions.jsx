@@ -21,26 +21,10 @@ export function addWine() {
    }
   database.ref('wines/wines').push(payload)
   }
-
-
-  /* return {*/
-  /* type: "ADD_WINE",*/
-  /* payload: {*/
-  /* id,*/
-  /* name: "",*/
-  /* vintage: 2016,*/
-  /* editing: true,*/
-  /* } */
-  /* }*/
 }
 
 export function deleteWine(id) {
-  return {
-    type: "DELETE_WINE",
-    payload: {
-      id,
-    } 
-  }
+    return dispatch =>  database.ref('wines/wines').child(id).remove();
 }
 
 export function startEdit(editing, id) {
