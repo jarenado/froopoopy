@@ -6,10 +6,12 @@ import thunk from 'redux-thunk';
 /*import { reducer } from "../reducers";*/
 import user from "../reducers/userReducer";
 import wines from "../reducers/wineReducer";
+import modal from "../reducers/modalReducer";
 
 const reducer = combineReducers({
     user,
-    wines
+    wines,
+    modal
 });
 
 const logger = createLogger();

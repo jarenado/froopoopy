@@ -10,6 +10,7 @@ import { addWine } from "../actions/wineActions";
 //components
 import Header from "../components/Header"; 
 import Footer from "../components/Footer"; 
+import Modal from "../components/Modal"; 
 import WineList from "../components/WineList"; 
 
 import axios from "axios"
@@ -19,7 +20,9 @@ require("../sass/style.scss");
 @connect((store) => {
   return {
     user: store.user.user,
-    wines: store.wines.wines
+    wines: store.wines.wines,
+    modal: store.modal.modal
+      
   };
 })
 
@@ -54,6 +57,7 @@ export default class Layout extends React.Component {
 		    <button className={buttonClass} onClick={this.addWine.bind(this)}>Add Wine</button>
 		</main>
 		<Footer />
+                <Modal />
 	    </div>
     )
   }

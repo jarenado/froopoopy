@@ -15541,7 +15541,7 @@ module.exports = function(module) {
 
 
 Object.defineProperty(exports, "__esModule", {
-		value: true
+  value: true
 });
 exports.default = undefined;
 
@@ -15576,6 +15576,10 @@ var _Footer = __webpack_require__(164);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
+var _Modal = __webpack_require__(338);
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 var _WineList = __webpack_require__(169);
 
 var _WineList2 = _interopRequireDefault(_WineList);
@@ -15595,94 +15599,97 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 __webpack_require__(333);
 
 var Layout = (_dec = (0, _reactRedux.connect)(function (store) {
-		return {
-				user: store.user.user,
-				wines: store.wines.wines
-		};
+  return {
+    user: store.user.user,
+    wines: store.wines.wines,
+    modal: store.modal.modal
+
+  };
 }), _dec(_class = function (_React$Component) {
-		_inherits(Layout, _React$Component);
+  _inherits(Layout, _React$Component);
 
-		function Layout() {
-				_classCallCheck(this, Layout);
+  function Layout() {
+    _classCallCheck(this, Layout);
 
-				return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).apply(this, arguments));
-		}
+    return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).apply(this, arguments));
+  }
 
-		_createClass(Layout, [{
-				key: "componentWillMount",
-				value: function componentWillMount() {
-						this.props.dispatch((0, _userActions.fetchUser)());
-				}
-		}, {
-				key: "addWine",
-				value: function addWine() {
-						this.props.dispatch((0, _wineActions.addWine)());
-				}
-		}, {
-				key: "render",
-				value: function render() {
-						var _props = this.props,
-						    user = _props.user,
-						    wines = _props.wines;
+  _createClass(Layout, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.props.dispatch((0, _userActions.fetchUser)());
+    }
+  }, {
+    key: "addWine",
+    value: function addWine() {
+      this.props.dispatch((0, _wineActions.addWine)());
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          user = _props.user,
+          wines = _props.wines;
 
-						var buttonClass = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored";
+      var buttonClass = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored";
 
-						return _react2.default.createElement(
-								"div",
-								{ className: "mdl-layout mdl-js-layout mdl-layout--fixed-header" },
-								_react2.default.createElement(_Header2.default, { title: user.name }),
-								_react2.default.createElement(
-										"div",
-										{ className: "mdl-layout__drawer" },
-										_react2.default.createElement(
-												"span",
-												{ className: "mdl-layout-title" },
-												"Settings"
-										),
-										_react2.default.createElement(
-												"nav",
-												{ className: "mdl-navigation" },
-												_react2.default.createElement("a", { className: "mdl-navigation__link" }),
-												_react2.default.createElement(
-														"a",
-														{ className: "mdl-navigation__link" },
-														"Link"
-												),
-												_react2.default.createElement(
-														"a",
-														{ className: "mdl-navigation__link" },
-														"Link"
-												),
-												_react2.default.createElement(
-														"a",
-														{ className: "mdl-navigation__link" },
-														"Link"
-												)
-										)
-								),
-								_react2.default.createElement(
-										"main",
-										{ className: "mdl-layout__content" },
-										_react2.default.createElement(
-												"p",
-												null,
-												"Welcome, ",
-												user.name,
-												". Here are you're wines:"
-										),
-										_react2.default.createElement(_WineList2.default, { wines: this.props.wines }),
-										_react2.default.createElement(
-												"button",
-												{ className: buttonClass, onClick: this.addWine.bind(this) },
-												"Add Wine"
-										)
-								),
-								_react2.default.createElement(_Footer2.default, null)
-						);
-				}
-		}]);
+      return _react2.default.createElement(
+        "div",
+        { className: "mdl-layout mdl-js-layout mdl-layout--fixed-header" },
+        _react2.default.createElement(_Header2.default, { title: user.name }),
+        _react2.default.createElement(
+          "div",
+          { className: "mdl-layout__drawer" },
+          _react2.default.createElement(
+            "span",
+            { className: "mdl-layout-title" },
+            "Settings"
+          ),
+          _react2.default.createElement(
+            "nav",
+            { className: "mdl-navigation" },
+            _react2.default.createElement("a", { className: "mdl-navigation__link" }),
+            _react2.default.createElement(
+              "a",
+              { className: "mdl-navigation__link" },
+              "Link"
+            ),
+            _react2.default.createElement(
+              "a",
+              { className: "mdl-navigation__link" },
+              "Link"
+            ),
+            _react2.default.createElement(
+              "a",
+              { className: "mdl-navigation__link" },
+              "Link"
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "main",
+          { className: "mdl-layout__content" },
+          _react2.default.createElement(
+            "p",
+            null,
+            "Welcome, ",
+            user.name,
+            ". Here are you're wines:"
+          ),
+          _react2.default.createElement(_WineList2.default, { wines: this.props.wines }),
+          _react2.default.createElement(
+            "button",
+            { className: buttonClass, onClick: this.addWine.bind(this) },
+            "Add Wine"
+          )
+        ),
+        _react2.default.createElement(_Footer2.default, null),
+        _react2.default.createElement(_Modal2.default, null)
+      );
+    }
+  }]);
 
-		return Layout;
+  return Layout;
 }(_react2.default.Component)) || _class);
 exports.default = Layout;
 
@@ -15715,13 +15722,20 @@ var _wineReducer = __webpack_require__(171);
 
 var _wineReducer2 = _interopRequireDefault(_wineReducer);
 
+var _modalReducer = __webpack_require__(339);
+
+var _modalReducer2 = _interopRequireDefault(_modalReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*import { reducer } from "../reducers";*/
 var reducer = (0, _redux.combineReducers)({
     user: _userReducer2.default,
-    wines: _wineReducer2.default
+    wines: _wineReducer2.default,
+    modal: _modalReducer2.default
 });
+
+/*import { reducer } from "../reducers";*/
+
 
 var logger = (0, _reduxLogger2.default)();
 var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, logger);
@@ -16947,6 +16961,8 @@ var _reactRedux = __webpack_require__(38);
 
 var _wineActions = __webpack_require__(50);
 
+var _modalActions = __webpack_require__(337);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16957,7 +16973,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
   return {
-    wines: store.wines.wines
+    wines: store.wines.wines,
+    modal: store.modal.modal
   };
 }), _dec(_class = function (_React$Component) {
   _inherits(Wine, _React$Component);
@@ -16977,6 +16994,11 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
     key: 'startEdit',
     value: function startEdit(editing, id) {
       this.props.dispatch((0, _wineActions.startEdit)(editing, id));
+    }
+  }, {
+    key: 'showModal',
+    value: function showModal(editing, id) {
+      this.props.dispatch((0, _modalActions.showModal)(editing, id));
     }
   }, {
     key: 'updateWine',
@@ -17111,7 +17133,7 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
         ),
         _react2.default.createElement(
           'td',
-          { onClick: this.startEdit.bind(this, editing, id) },
+          { onClick: this.showModal.bind(this, editing, id) },
           _react2.default.createElement(
             'i',
             { className: 'material-icons' },
@@ -17175,7 +17197,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var WineList = (_dec = (0, _reactRedux.connect)(function (store) {
   return {
     user: store.user.user,
-    wines: store.wines.wines
+    wines: store.wines.wines,
+    modal: store.modal
   };
 }), _dec(_class = function (_React$Component) {
   _inherits(WineList, _React$Component);
@@ -51275,6 +51298,133 @@ function symbolObservablePonyfill(root) {
 	}
 
 	return result;
+};
+
+/***/ }),
+/* 337 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showModal = showModal;
+function showModal() {
+  return {
+    type: "SHOW_MODAL",
+    payload: {
+      type: "edit"
+    }
+  };
+}
+
+/***/ }),
+/* 338 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _class;
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(38);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
+  return {
+    modal: store.modal.modal
+  };
+}), _dec(_class = function (_React$Component) {
+  _inherits(Modal, _React$Component);
+
+  function Modal() {
+    _classCallCheck(this, Modal);
+
+    return _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).apply(this, arguments));
+  }
+
+  _createClass(Modal, [{
+    key: 'render',
+    value: function render() {
+      var modal = this.props.modal;
+      /* TODO: add logic to show modal with appropriate wine edit form*/
+      /* if (modal.type) {
+       *   console.log('im on')
+       * }else {
+       *   console.log('im off')
+       * }
+       */
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'modal' },
+        'I\'m a modal!'
+      );
+    }
+  }]);
+
+  return Modal;
+}(_react2.default.Component)) || _class);
+exports.default = Modal;
+
+/***/ }),
+/* 339 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { modal: { type: "" } };
+  var action = arguments[1];
+
+  switch (action.type) {
+    case "SHOW_MODAL":
+      {
+        return _extends({}, state, {
+          modal: {
+            type: action.payload.type
+          }
+        });
+        break;
+      }
+  }
+  return state;
+};
+
+var _lodash = __webpack_require__(209);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initialState = {
+  type: null
 };
 
 /***/ })

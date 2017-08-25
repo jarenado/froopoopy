@@ -13,7 +13,8 @@ import Wine from "../components/Wine";
 @connect((store) => {
   return {
     user: store.user.user,
-    wines: store.wines.wines
+    wines: store.wines.wines,
+    modal: store.modal
   };
 })
 
