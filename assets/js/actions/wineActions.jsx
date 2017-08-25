@@ -3,7 +3,7 @@ import database from './database.js';
 export function fetchWines() {
   return dispatch => {
     database.ref('wines').on('value', snapshot => {
-      console.log(snapshot.val())
+        console.log(snapshot.val())
       dispatch({
         type: "FETCH_WINES",
         payload: snapshot.val()
