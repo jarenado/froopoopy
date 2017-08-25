@@ -51311,11 +51311,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.showModal = showModal;
+exports.hideModal = hideModal;
 function showModal() {
   return {
     type: "SHOW_MODAL",
     payload: {
       type: "edit"
+    }
+  };
+}
+
+function hideModal() {
+  return {
+    type: "HIDE_MODAL",
+    payload: {
+      type: ""
     }
   };
 }
@@ -51341,6 +51351,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(38);
 
+var _modalActions = __webpack_require__(337);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51363,6 +51375,11 @@ var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
   }
 
   _createClass(Modal, [{
+    key: 'hideModal',
+    value: function hideModal() {
+      this.props.dispatch((0, _modalActions.hideModal)());
+    }
+  }, {
     key: 'render',
     value: function render() {
       var modal = this.props.modal;
@@ -51376,8 +51393,21 @@ var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'modal' },
-        'I\'m a modal!'
+        null,
+        modal.type && _react2.default.createElement(
+          'div',
+          { className: 'modal' },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { onClick: this.hideModal.bind(this) },
+              'Close'
+            )
+          ),
+          'I\'m a modal!'
+        )
       );
     }
   }]);
@@ -51405,6 +51435,16 @@ exports.default = function () {
 
   switch (action.type) {
     case "SHOW_MODAL":
+      {
+        return _extends({}, state, {
+          modal: {
+            type: action.payload.type
+          }
+        });
+        break;
+      }
+
+    case "HIDE_MODAL":
       {
         return _extends({}, state, {
           modal: {

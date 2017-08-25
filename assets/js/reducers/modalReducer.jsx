@@ -15,6 +15,16 @@ export default function (state = {modal:{type:""}}, action) {
       }
       break;
     }
+
+    case "HIDE_MODAL": {
+      return {
+        ...state,
+        modal:{
+          type: action.payload.type
+        } 
+      }
+      break;
+    }
   }
   return state;
 }

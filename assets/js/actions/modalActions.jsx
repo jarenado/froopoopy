@@ -6,3 +6,13 @@ export function showModal() {
     }
   }
 }
+
+
+export function hideModal() {
+  return {
+    type: "HIDE_MODAL",
+    payload: {
+      type: ""
+    }
+  }
+}
