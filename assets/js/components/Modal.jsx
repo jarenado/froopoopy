@@ -26,6 +26,7 @@ class Modal extends React.Component {
     return (
       <div>
         { modal.type &&
+
           <div className="modal" >
             <div><button onClick={this.hideModal.bind(this)}>Close</button></div>
             I'm a modal!
