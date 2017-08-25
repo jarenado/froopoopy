@@ -36,7 +36,7 @@ export function deleteWine(id) {
 
 export function startEdit(editing, id) {
   return {
-    type: "TOGGLE_EDIT",
+    type: "EDIT_WINE",
     id: id,
     editing: editing,
   }

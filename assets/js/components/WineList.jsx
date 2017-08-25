@@ -30,7 +30,7 @@ class WineList extends React.Component {
 
     const mappedWines = Object.keys(wines).map((item, i) => (
       <Wine
-          id={i}
+          id={item}
           key={i}
           vintage={wines[item].vintage}
           index={i}

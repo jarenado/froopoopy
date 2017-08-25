@@ -1,5 +1,6 @@
+import _ from "lodash"
 
-export default function (state={wines:[]}, action) {
+export default function (state={wines:{}}, action) {
   switch(action.type) {
 
     case "FETCH_WINES": {
@@ -24,20 +25,18 @@ export default function (state={wines:[]}, action) {
       break;
     }
 
-    case "TOGGLE_EDIT": {
+    case "EDIT_WINE": {
       return {
         ...state,
-        wines: state.wines.map(wine => {
-          if (wine.id === action.id){
+        wines: _.mapValues(state.wines, (wine, value) => {
+          if (value === action.id) {
             return {
               ...wine,
-               editing:!action.editing
+              editing:!wine.editing
             }
           } else {
             return wine
-
           }
-
         })}
       break;
     }

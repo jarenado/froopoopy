@@ -26,13 +26,13 @@ class Wine extends React.Component {
   renderItemOrEditFields() {
     const { name, id, editing, index } = this.props;
 
-      /* const tableStyle = {
-       *     padding: "10px",
-       *     width: "100%",
-       *     border: "thin solid blue",
-       *     marginTop: "5px",
-       * }; 
-       */
+    /* const tableStyle = {
+     *     padding: "10px",
+     *     width: "100%",
+     *     border: "thin solid blue",
+     *     marginTop: "5px",
+     * }; 
+     */
     const inputStyle = {
       width: "300px",
     }
@@ -50,20 +50,38 @@ class Wine extends React.Component {
     } else {
       return (
         <tr>
-            <td>{index + 1}: </td>
-            <td>{name}</td>
-            <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
-            <td><button onClick={this.startEdit.bind(this, editing, id )} className={buttonClass} >Edit</button></td>
+          <td>{index + 1}: </td>
+          <td>{name}</td>
+          <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
+          <td><button onClick={this.startEdit.bind(this, editing, id )} className={buttonClass} >Edit</button></td>
         </tr> 
-        );
+      );
     }
 
   }
 
   render() {
+    const { name, id, editing, index } = this.props;
+    const inputStyle = {
+      width: "300px",
+    }
+      
 
-    return this.renderItemOrEditFields()
-    
+      /* TODO: figure out how to toggle edits
+       * if(editing){
+       *     var foo = <p>editing</p>
+       * } else {
+       *     var foo = <p>not editing</p>
+       * }
+       */
+    return (
+        <tr>
+          <td>{index + 1}: </td>
+          <td>{name}</td>
+          {/* <td>{foo}</td> */}
+          <td onClick={this.startEdit.bind(this, editing, id)}><i  className="material-icons">create</i></td>
+        </tr> 
+    ) 
 
   }
 }
