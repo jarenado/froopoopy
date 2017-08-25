@@ -55,9 +55,9 @@ export default class Layout extends React.Component {
 		    <p>Welcome, {user.name}. Here are you're wines:</p>
 		    <WineList wines={this.props.wines} />
 		    <button className={buttonClass} onClick={this.addWine.bind(this)}>Add Wine</button>
-		</main>
-		<Footer />
                 <Modal />
+                </main>
+		<Footer />
 	    </div>
     )
   }

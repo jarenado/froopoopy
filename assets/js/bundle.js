@@ -15681,10 +15681,10 @@ var Layout = (_dec = (0, _reactRedux.connect)(function (store) {
             "button",
             { className: buttonClass, onClick: this.addWine.bind(this) },
             "Add Wine"
-          )
+          ),
+          _react2.default.createElement(_Modal2.default, null)
         ),
-        _react2.default.createElement(_Footer2.default, null),
-        _react2.default.createElement(_Modal2.default, null)
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -17136,7 +17136,7 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
           { onClick: this.showModal.bind(this, editing, id) },
           _react2.default.createElement(
             'i',
-            { className: 'material-icons' },
+            { className: 'edit-wine material-icons' },
             'create'
           )
         )
@@ -17385,7 +17385,7 @@ exports = module.exports = __webpack_require__(173)();
 
 
 // module
-exports.push([module.i, "mdl-data-table {\n  table-layout: fixed;\n  width: 100%; }\n\n#my-table td, th {\n  width: 100%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  -o-text-overflow: ellipsis; }\n\n/* unrelated to responsive table css */\n/* #my-table{ */\n/* margin-top:24px; */\n/* } */\n/* .material-icons { */\n/* vertical-align: -25%; */\n/* } */\n/* .mdl-data-table th, td{ */\n/* text-align: left !important; */\n/* } */\n/* .center{ */\n/* text-align:center; */\n/* } */\n/* .mdl-layout__drawer-button {\n   line-height: 43px;\n   } */\n", ""]);
+exports.push([module.i, "mdl-data-table {\n  table-layout: fixed;\n  width: 100%; }\n\n#my-table td, th {\n  width: 100%;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  -o-text-overflow: ellipsis; }\n\n.edit-wine {\n  cursor: pointer; }\n\n/* TODO: need to come back and implement a real modal */\n.modal {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  z-index: 1000; }\n\n.overlay {\n  background: #000;\n  position: absolute;\n  top: 0;\n  opacity: .25;\n  height: 100vh;\n  width: 100%; }\n\n.modal-wrapper {\n  padding: 50px;\n  background: #fff;\n  border-radius: 10px; }\n\n/* unrelated to responsive table css */\n/* #my-table{ */\n/* margin-top:24px; */\n/* } */\n/* .material-icons { */\n/* vertical-align: -25%; */\n/* } */\n/* .mdl-data-table th, td{ */\n/* text-align: left !important; */\n/* } */\n/* .center{ */\n/* text-align:center; */\n/* } */\n/* .mdl-layout__drawer-button {\n   line-height: 43px;\n   } */\n", ""]);
 
 // exports
 
@@ -51396,17 +51396,26 @@ var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
         null,
         modal.type && _react2.default.createElement(
           'div',
-          { className: 'modal' },
+          null,
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'modal' },
             _react2.default.createElement(
-              'button',
-              { onClick: this.hideModal.bind(this) },
-              'Close'
+              'div',
+              { className: 'modal-wrapper' },
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'button',
+                  { onClick: this.hideModal.bind(this) },
+                  'Close'
+                )
+              ),
+              'I\'m a modal!'
             )
           ),
-          'I\'m a modal!'
+          _react2.default.createElement('div', { className: 'overlay' })
         )
       );
     }

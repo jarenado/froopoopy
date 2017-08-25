@@ -26,10 +26,14 @@ class Modal extends React.Component {
     return (
       <div>
         { modal.type &&
-
-          <div className="modal" >
-            <div><button onClick={this.hideModal.bind(this)}>Close</button></div>
-            I'm a modal!
+          <div>
+              <div className="modal" >
+                <div className="modal-wrapper">
+                <div><button onClick={this.hideModal.bind(this)}>Close</button></div>
+                I'm a modal!
+                </div>
+              </div>
+              <div className="overlay"></div>
           </div>
         }
       </div>

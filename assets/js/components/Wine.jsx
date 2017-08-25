@@ -86,7 +86,7 @@ class Wine extends React.Component {
           <td>{name}</td>
           {/* <td>{foo}</td> */}
           {/* <td onClick={this.startEdit.bind(this, editing, id)}><i  className="material-icons">create</i></td> */}
-          <td onClick={this.showModal.bind(this, editing, id)}><i  className="material-icons">create</i></td>
+          <td onClick={this.showModal.bind(this, editing, id)}><i  className="edit-wine material-icons">create</i></td>
         </tr> 
     ) 
 
