@@ -17,12 +17,6 @@ class Modal extends React.Component {
   render() {
     const { modal } = this.props
     /* TODO: add logic to show modal with appropriate wine edit form*/
-    /* if (modal.type) {
-     *   console.log('im on')
-     * }else {
-     *   console.log('im off')
-     * }
-     */
     return (
       <div>
         { modal.type &&

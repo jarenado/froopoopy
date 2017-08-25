@@ -51384,12 +51384,6 @@ var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
     value: function render() {
       var modal = this.props.modal;
       /* TODO: add logic to show modal with appropriate wine edit form*/
-      /* if (modal.type) {
-       *   console.log('im on')
-       * }else {
-       *   console.log('im off')
-       * }
-       */
 
       return _react2.default.createElement(
         'div',
