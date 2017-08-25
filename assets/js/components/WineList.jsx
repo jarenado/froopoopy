@@ -29,8 +29,16 @@ class WineList extends React.Component {
     const tableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp"
 
     const mappedWines = Object.keys(wines).map((item, i) => (
-        <Wine key={i} vintage={wines[item].vintage} index={i} id={i} name={wines[item].name} editing={wines[item].editing} />
+      <Wine
+          id={i}
+          key={i}
+          vintage={wines[item].vintage}
+          index={i}
+          name={wines[item].name}
+          editing={wines[item].editing}
+      />
     )) 
+
     return (
       <table id="my-table" className={tableClass}>
         <thead>

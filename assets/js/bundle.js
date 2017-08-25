@@ -6066,7 +6066,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function fetchWines() {
   return function (dispatch) {
     _database2.default.ref('wines').on('value', function (snapshot) {
-      console.log(snapshot.val());
       dispatch({
         type: "FETCH_WINES",
         payload: snapshot.val()
@@ -17136,8 +17135,16 @@ var WineList = (_dec = (0, _reactRedux.connect)(function (store) {
       var tableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp";
 
       var mappedWines = Object.keys(wines).map(function (item, i) {
-        return _react2.default.createElement(_Wine2.default, { key: i, vintage: wines[item].vintage, index: i, id: i, name: wines[item].name, editing: wines[item].editing });
+        return _react2.default.createElement(_Wine2.default, {
+          id: i,
+          key: i,
+          vintage: wines[item].vintage,
+          index: i,
+          name: wines[item].name,
+          editing: wines[item].editing
+        });
       });
+
       return _react2.default.createElement(
         "table",
         { id: "my-table", className: tableClass },
