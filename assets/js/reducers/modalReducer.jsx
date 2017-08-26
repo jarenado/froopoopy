@@ -1,9 +1,5 @@
 import _ from "lodash"
 
-const initialState = {
-  type: null,
-}
-
 export default function (state = {modal:{isShowing:false, wine:{}}}, action) {
   switch(action.type) {
     case "SHOW_MODAL": {
@@ -22,6 +18,7 @@ export default function (state = {modal:{isShowing:false, wine:{}}}, action) {
         ...state,
         modal:{
           isShowing: action.payload.isShowing,
+          wine: {}
         } 
       }
       break;

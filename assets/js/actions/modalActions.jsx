@@ -1,6 +1,5 @@
 export function showModal(id) {
   return (dispatch, getState) => {
-    console.log(getState().wines.wines[id])
     dispatch ({
         type: "SHOW_MODAL",
         payload: {

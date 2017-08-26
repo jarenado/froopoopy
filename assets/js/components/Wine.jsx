@@ -29,60 +29,12 @@ class Wine extends React.Component {
     this.props.dispatch(updateWine(id, name))
   }
 
-  renderItemOrEditFields() {
-    const { name, id, editing, index } = this.props;
-
-    /* const tableStyle = {
-     *     padding: "10px",
-     *     width: "100%",
-     *     border: "thin solid blue",
-     *     marginTop: "5px",
-     * }; 
-     */
-    const inputStyle = {
-      width: "300px",
-    }
-    const buttonClass = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-
-    if (editing) {
-      return (
-        <tr>
-          <td>{index + 1}: </td>
-          <td><input type="text" value={name} onChange={this.updateWine.bind(this, id)} /></td>
-          <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
-          <td><button onClick={this.startEdit.bind(this, editing, id)} className={buttonClass} >Save</button></td>
-        </tr>
-      );
-    } else {
-      return (
-        <tr>
-          <td>{index + 1}: </td>
-          <td>{name}</td>
-          <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
-          <td><button onClick={this.startEdit.bind(this, editing, id )} className={buttonClass} >Edit</button></td>
-        </tr> 
-      );
-    }
-
-  }
-
   render() {
     const { name, id, editing, index, vintage, producer, color, country, region, qty, price } = this.props;
-    const inputStyle = {
-      width: "300px",
-    }
       
-
-      /* TODO: figure out how to toggle edits
-       * if(editing){
-       *     var foo = <p>editing</p>
-       * } else {
-       *     var foo = <p>not editing</p>
-       * }
-       */
     return (
         <tr>
-          <td>{index + 1}: </td>
+          <td>{index + 1}:</td>
           <td>{name}</td>
           <td>{vintage}</td>
           <td>{producer}</td>
@@ -91,9 +43,9 @@ class Wine extends React.Component {
           <td>{region}</td>
           <td>{qty}</td>
           <td>{price}</td>
-          {/* <td>{foo}</td> */}
-          {/* <td onClick={this.startEdit.bind(this, editing, id)}><i  className="material-icons">create</i></td> */}
-          <td onClick={this.showModal.bind(this, id)}><i  className="edit-wine material-icons">create</i></td>
+          <td onClick={this.showModal.bind(this, id)}>
+              <i  className="edit-wine material-icons">create</i>
+          </td>
         </tr> 
     ) 
 

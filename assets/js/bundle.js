@@ -9096,7 +9096,6 @@ exports.showModal = showModal;
 exports.hideModal = hideModal;
 function showModal(id) {
   return function (dispatch, getState) {
-    console.log(getState().wines.wines[id]);
     dispatch({
       type: "SHOW_MODAL",
       payload: {
@@ -34125,6 +34124,12 @@ var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
       this.props.dispatch((0, _modalActions.hideModal)());
     }
   }, {
+    key: 'saveEdit',
+    value: function saveEdit(id, e) {
+      /* console.log('save edit', id)*/
+      /* console.log('event', e.target)*/
+    }
+  }, {
     key: 'render',
     value: function render() {
       var modal = this.props.modal;
@@ -34152,12 +34157,33 @@ var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
                 'div',
                 null,
                 _react2.default.createElement(
-                  'button',
-                  { onClick: this.hideModal.bind(this) },
-                  'Close'
-                )
+                  'label',
+                  null,
+                  'Name: '
+                ),
+                _react2.default.createElement('input', { type: 'text', name: 'wine' }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  'Vintage: '
+                ),
+                _react2.default.createElement('input', { type: 'text', name: 'wine' }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  'QTY: '
+                ),
+                _react2.default.createElement('input', { type: 'text', name: 'wine' }),
+                _react2.default.createElement('br', null)
               ),
-              'and this is the wine!'
+              _react2.default.createElement(
+                'button',
+                { onClick: this.hideModal.bind(this) },
+                'Close'
+              ),
+              _react2.default.createElement('input', { type: 'submit', onClick: this.saveEdit.bind(this, modal.wine), value: 'save' })
             )
           ),
           _react2.default.createElement('div', { className: 'overlay' })
@@ -34239,131 +34265,30 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
       this.props.dispatch((0, _wineActions.updateWine)(id, name));
     }
   }, {
-    key: 'renderItemOrEditFields',
-    value: function renderItemOrEditFields() {
+    key: 'render',
+    value: function render() {
       var _props = this.props,
           name = _props.name,
           id = _props.id,
           editing = _props.editing,
-          index = _props.index;
+          index = _props.index,
+          vintage = _props.vintage,
+          producer = _props.producer,
+          color = _props.color,
+          country = _props.country,
+          region = _props.region,
+          qty = _props.qty,
+          price = _props.price;
 
-      /* const tableStyle = {
-       *     padding: "10px",
-       *     width: "100%",
-       *     border: "thin solid blue",
-       *     marginTop: "5px",
-       * }; 
-       */
 
-      var inputStyle = {
-        width: "300px"
-      };
-      var buttonClass = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored";
-
-      if (editing) {
-        return _react2.default.createElement(
-          'tr',
-          null,
-          _react2.default.createElement(
-            'td',
-            null,
-            index + 1,
-            ': '
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement('input', { type: 'text', value: name, onChange: this.updateWine.bind(this, id) })
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement(
-              'button',
-              { onClick: this.deleteWine.bind(this, id), className: buttonClass },
-              'Delete'
-            )
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement(
-              'button',
-              { onClick: this.startEdit.bind(this, editing, id), className: buttonClass },
-              'Save'
-            )
-          )
-        );
-      } else {
-        return _react2.default.createElement(
-          'tr',
-          null,
-          _react2.default.createElement(
-            'td',
-            null,
-            index + 1,
-            ': '
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            name
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement(
-              'button',
-              { onClick: this.deleteWine.bind(this, id), className: buttonClass },
-              'Delete'
-            )
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement(
-              'button',
-              { onClick: this.startEdit.bind(this, editing, id), className: buttonClass },
-              'Edit'
-            )
-          )
-        );
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props2 = this.props,
-          name = _props2.name,
-          id = _props2.id,
-          editing = _props2.editing,
-          index = _props2.index,
-          vintage = _props2.vintage,
-          producer = _props2.producer,
-          color = _props2.color,
-          country = _props2.country,
-          region = _props2.region,
-          qty = _props2.qty,
-          price = _props2.price;
-
-      var inputStyle = {
-        width: "300px"
-
-        /* TODO: figure out how to toggle edits
-         * if(editing){
-         *     var foo = <p>editing</p>
-         * } else {
-         *     var foo = <p>not editing</p>
-         * }
-         */
-      };return _react2.default.createElement(
+      return _react2.default.createElement(
         'tr',
         null,
         _react2.default.createElement(
           'td',
           null,
           index + 1,
-          ': '
+          ':'
         ),
         _react2.default.createElement(
           'td',
@@ -34612,7 +34537,8 @@ exports.default = function () {
       {
         return _extends({}, state, {
           modal: {
-            isShowing: action.payload.isShowing
+            isShowing: action.payload.isShowing,
+            wine: {}
           }
         });
         break;
@@ -34626,10 +34552,6 @@ var _lodash = __webpack_require__(94);
 var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var initialState = {
-  type: null
-};
 
 /***/ }),
 /* 175 */
