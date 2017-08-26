@@ -1,9 +1,12 @@
 import _ from "lodash"
 
+import {
+  FETCH_WINES
+} from '../constants/ActionTypes.js'
+
 export default function (state={wines:{}}, action) {
   switch(action.type) {
-
-    case "FETCH_WINES": {
+    case FETCH_WINES: {
       return {...state, wines: action.payload.wines}
       break;
     }

@@ -4,13 +4,14 @@ const initialState = {
   type: null,
 }
 
-export default function (state = {modal:{type:""}}, action) {
+export default function (state = {modal:{isShowing:false, wine:{}}}, action) {
   switch(action.type) {
     case "SHOW_MODAL": {
       return {
         ...state,
         modal:{
-          type: action.payload.type
+          isShowing: action.payload.isShowing,
+          wine: action.payload.wine
         } 
       }
       break;
@@ -20,7 +21,7 @@ export default function (state = {modal:{type:""}}, action) {
       return {
         ...state,
         modal:{
-          type: action.payload.type
+          isShowing: action.payload.isShowing,
         } 
       }
       break;

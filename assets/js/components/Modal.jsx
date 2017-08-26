@@ -17,14 +17,22 @@ class Modal extends React.Component {
   render() {
     const { modal } = this.props
     /* TODO: add logic to show modal with appropriate wine edit form*/
+    /* if (modal.wine) {*/
+    /* const mappedwine = Object.keys(modal.wine).map((key, value) => {*/
+    /* return <li key={key}>{modal.wine[key].name}</li>*/
+    /* }) */
+    /* */
+    /* }*/
     return (
       <div>
-        { modal.type &&
+        { modal.isShowing &&
           <div>
               <div className="modal" >
                 <div className="modal-wrapper">
-                <div><button onClick={this.hideModal.bind(this)}>Close</button></div>
-                I'm a modal!
+                    <div>
+                        <button onClick={this.hideModal.bind(this)}>Close</button></div>
+                    {/* I'm a modal!{mappedwine}  */}
+                and this is the wine!
                 </div>
               </div>
               <div className="overlay"></div>

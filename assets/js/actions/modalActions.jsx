@@ -1,9 +1,13 @@
-export function showModal() {
-  return {
-    type: "SHOW_MODAL",
-    payload: {
-      type: "edit"
-    }
+export function showModal(id) {
+  return (dispatch, getState) => {
+    console.log(getState().wines.wines[id])
+    dispatch ({
+        type: "SHOW_MODAL",
+        payload: {
+          isShowing: true,
+          wine: getState().wines.wines[id]
+        }
+    })
   }
 }
 
@@ -12,7 +16,7 @@ export function hideModal() {
   return {
     type: "HIDE_MODAL",
     payload: {
-      type: ""
+      isShowing: false 
     }
   }
 }
