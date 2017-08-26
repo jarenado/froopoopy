@@ -17105,7 +17105,14 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
           name = _props2.name,
           id = _props2.id,
           editing = _props2.editing,
-          index = _props2.index;
+          index = _props2.index,
+          vintage = _props2.vintage,
+          producer = _props2.producer,
+          color = _props2.color,
+          country = _props2.country,
+          region = _props2.region,
+          qty = _props2.qty,
+          price = _props2.price;
 
       var inputStyle = {
         width: "300px"
@@ -17130,6 +17137,41 @@ var Wine = (_dec = (0, _reactRedux.connect)(function (store) {
           'td',
           null,
           name
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          vintage
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          producer
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          color
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          country
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          region
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          qty
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          price
         ),
         _react2.default.createElement(
           'td',
@@ -17228,6 +17270,12 @@ var WineList = (_dec = (0, _reactRedux.connect)(function (store) {
           id: item,
           key: i,
           vintage: wines[item].vintage,
+          producer: wines[item].producer,
+          color: wines[item].color,
+          country: wines[item].country,
+          region: wines[item].region,
+          qty: wines[item].qty,
+          price: wines[item].price,
           index: i,
           name: wines[item].name,
           editing: wines[item].editing
@@ -17236,7 +17284,7 @@ var WineList = (_dec = (0, _reactRedux.connect)(function (store) {
 
       return _react2.default.createElement(
         "table",
-        { id: "my-table", className: tableClass },
+        { className: tableClass },
         _react2.default.createElement(
           "thead",
           null,
@@ -17248,6 +17296,41 @@ var WineList = (_dec = (0, _reactRedux.connect)(function (store) {
               "th",
               null,
               "Label"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Vintage"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Producer"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Color"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Country"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Region"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "QTY"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Price"
             )
           )
         ),
