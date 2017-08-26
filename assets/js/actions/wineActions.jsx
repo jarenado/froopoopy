@@ -1,10 +1,18 @@
 import database from './database.js';
 
+import {
+    FETCH_WINES,
+    ADD_WINES,
+    DELETE_WINE,
+    EDIT_WINES,
+    UPDATE_WINES,
+} from "../constants/ActionTypes.js"
+
 export function fetchWines() {
   return dispatch => {
     database.ref('wines').on('value', snapshot => {
       dispatch({
-        type: "FETCH_WINES",
+        type: FETCH_WINES,
         payload: snapshot.val()
       })
     });
@@ -15,7 +23,7 @@ export function fetchWines() {
 export function addWine() {
   const id = Date.now();
   return {
-    type: "ADD_WINE",
+    type: ADD_WINE,
     payload: {
       id,
       name: "",
@@ -27,7 +35,7 @@ export function addWine() {
 
 export function deleteWine(id) {
   return {
-    type: "DELETE_WINE",
+    type: DELETE_WINE,
     payload: {
       id,
     } 
@@ -36,7 +44,7 @@ export function deleteWine(id) {
 
 export function startEdit(editing, id) {
   return {
-    type: "EDIT_WINE",
+    type: EDIT_WINE,
     id: id,
     editing: editing,
   }
@@ -44,7 +52,7 @@ export function startEdit(editing, id) {
 
 export function updateWine(id, name) {
   return {
-    type: "UPDATE_WINE",
+    type: UPDATE_WINE,
     id: id,
     name: name,
   }
