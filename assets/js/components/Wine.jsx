@@ -20,8 +20,8 @@ class Wine extends React.Component {
     this.props.dispatch(startEdit(editing, id))
   }
 
-  showModal(editing, id) {
-    this.props.dispatch(showModal(editing, id))
+  showModal(id) {
+    this.props.dispatch(showModal(id))
   }
 
   updateWine(id, e) {
@@ -67,7 +67,7 @@ class Wine extends React.Component {
   }
 
   render() {
-    const { name, id, editing, index } = this.props;
+    const { name, id, editing, index, vintage, producer, color, country, region, qty, price } = this.props;
     const inputStyle = {
       width: "300px",
     }
@@ -84,9 +84,16 @@ class Wine extends React.Component {
         <tr>
           <td>{index + 1}: </td>
           <td>{name}</td>
+          <td>{vintage}</td>
+          <td>{producer}</td>
+          <td>{color}</td>
+          <td>{country}</td>
+          <td>{region}</td>
+          <td>{qty}</td>
+          <td>{price}</td>
           {/* <td>{foo}</td> */}
           {/* <td onClick={this.startEdit.bind(this, editing, id)}><i  className="material-icons">create</i></td> */}
-          <td onClick={this.showModal.bind(this, editing, id)}><i  className="edit-wine material-icons">create</i></td>
+          <td onClick={this.showModal.bind(this, id)}><i  className="edit-wine material-icons">create</i></td>
         </tr> 
     ) 
 

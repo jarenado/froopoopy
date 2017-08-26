@@ -9,4 +9,3 @@ export const FETCH_USER_FULFILLED = 'FETCH_USER_FULFILLED'
 //modal constanst types
 export const SHOW_MODAL = 'SHOW_MODAL'
 export const HIDE_MODAL = 'HIDE_MODAL'
-

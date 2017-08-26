@@ -34,6 +34,12 @@ class WineList extends React.Component {
           id={item}
           key={i}
           vintage={wines[item].vintage}
+          producer={wines[item].producer}
+          color={wines[item].color}
+          country={wines[item].country}
+          region={wines[item].region}
+          qty={wines[item].qty}
+          price={wines[item].price}
           index={i}
           name={wines[item].name}
           editing={wines[item].editing}
@@ -41,11 +47,18 @@ class WineList extends React.Component {
     )) 
 
     return (
-      <table id="my-table" className={tableClass}>
+      <table className={tableClass}>
         <thead>
           <tr>
             <th></th>
             <th>Label</th>
+            <th>Vintage</th>
+            <th>Producer</th>
+            <th>Color</th>
+            <th>Country</th>
+            <th>Region</th>
+            <th>QTY</th>
+            <th>Price</th>
           </tr>
         </thead>
         <tbody>

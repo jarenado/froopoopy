@@ -10,7 +10,6 @@ import {
 
 export default function (state={wines:{}}, action) {
   switch(action.type) {
-
     case FETCH_WINES: {
       return {...state, wines: action.payload.wines}
       break;
