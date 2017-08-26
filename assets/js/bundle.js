@@ -34125,6 +34125,12 @@ var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
       this.props.dispatch((0, _modalActions.hideModal)());
     }
   }, {
+    key: 'saveEdit',
+    value: function saveEdit(id, e) {
+      /* console.log('save edit', id)*/
+      /* console.log('event', e.target)*/
+    }
+  }, {
     key: 'render',
     value: function render() {
       var modal = this.props.modal;
@@ -34152,12 +34158,33 @@ var Modal = (_dec = (0, _reactRedux.connect)(function (store) {
                 'div',
                 null,
                 _react2.default.createElement(
-                  'button',
-                  { onClick: this.hideModal.bind(this) },
-                  'Close'
-                )
+                  'label',
+                  null,
+                  'Name: '
+                ),
+                _react2.default.createElement('input', { type: 'text', name: 'wine' }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  'Vintage: '
+                ),
+                _react2.default.createElement('input', { type: 'text', name: 'wine' }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  'QTY: '
+                ),
+                _react2.default.createElement('input', { type: 'text', name: 'wine' }),
+                _react2.default.createElement('br', null)
               ),
-              'and this is the wine!'
+              _react2.default.createElement(
+                'button',
+                { onClick: this.hideModal.bind(this) },
+                'Close'
+              ),
+              _react2.default.createElement('input', { type: 'submit', onClick: this.saveEdit.bind(this, modal.wine), value: 'save' })
             )
           ),
           _react2.default.createElement('div', { className: 'overlay' })
