@@ -18,7 +18,7 @@ import Wine from "../components/Wine";
   };
 })
 
-class WineList extends React.Component {
+export default class WineList extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchWines())
   }
@@ -69,5 +69,3 @@ class WineList extends React.Component {
   }
     
 }
-
-export default WineList;

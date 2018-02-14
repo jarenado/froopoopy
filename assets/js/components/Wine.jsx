@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { startEdit, updateWine,  fetchWines, addWine, deleteWine } from "../actions/wineActions";
@@ -11,7 +12,7 @@ import { showModal } from "../actions/modalActions.jsx";
   };
 })
 
-class Wine extends React.Component {
+export default class Wine extends React.Component {
   deleteWine(id) {
     this.props.dispatch(deleteWine(id))
   }
@@ -71,15 +72,6 @@ class Wine extends React.Component {
     const inputStyle = {
       width: "300px",
     }
-      
-
-      /* TODO: figure out how to toggle edits
-       * if(editing){
-       *     var foo = <p>editing</p>
-       * } else {
-       *     var foo = <p>not editing</p>
-       * }
-       */
     return (
         <tr>
           <td>{index + 1}: </td>
@@ -100,4 +92,13 @@ class Wine extends React.Component {
   }
 }
 
-export default Wine;
+Wine.propTypes = {
+  name: PropTypes.string,
+  vintage: PropTypes.number,
+  producer: PropTypes.string,
+  color: PropTypes.string,
+  country: PropTypes.string,
+  region: PropTypes.string,
+  qty: PropTypes.number,
+  price: PropTypes.number
+}

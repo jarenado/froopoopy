@@ -1,16 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Title from "./Header/Title";
 
-class Header extends React.Component {
+export default class Header extends React.Component {
 
   render() {
+    const { title } = this.props;
     return (
         <header className="mdl-layout__header">
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title">
               
-              <Title title={this.props.title} />
+              <Title title={title} />
             </span>
             <div className="mdl-layout-spacer"></div>
             <nav className="mdl-navigation mdl-layout--large-screen-only">
@@ -25,4 +27,6 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+Header.propTypes = {
+  title: PropTypes.string
+}
