@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Button from 'material-ui/Button';
+import Dialog from 'material-ui/Dialog';
 
 import { startEdit, updateWine,  fetchWines, addWine, deleteWine } from "../actions/wineActions";
 import { showModal } from "../actions/modalActions.jsx";
@@ -30,49 +32,48 @@ export default class Wine extends React.Component {
     this.props.dispatch(updateWine(id, name))
   }
 
-  renderItemOrEditFields() {
-    const { name, id, editing, index } = this.props;
+  state = {
+    open: false,
+  };
 
-    /* const tableStyle = {
-     *     padding: "10px",
-     *     width: "100%",
-     *     border: "thin solid blue",
-     *     marginTop: "5px",
-     * }; 
-     */
-    const inputStyle = {
-      width: "300px",
-    }
-    const buttonClass = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+  handleOpen = () => {
+    this.setState({open: true});
+  };
 
-    if (editing) {
-      return (
-        <tr>
-          <td>{index + 1}: </td>
-          <td><input type="text" value={name} onChange={this.updateWine.bind(this, id)} /></td>
-          <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
-          <td><button onClick={this.startEdit.bind(this, editing, id)} className={buttonClass} >Save</button></td>
-        </tr>
-      );
-    } else {
-      return (
-        <tr>
-          <td>{index + 1}: </td>
-          <td>{name}</td>
-          <td><button onClick={this.deleteWine.bind(this, id)} className={buttonClass} >Delete</button></td>
-          <td><button onClick={this.startEdit.bind(this, editing, id )} className={buttonClass} >Edit</button></td>
-        </tr> 
-      );
-    }
-
-  }
+  handleClose = () => {
+    this.setState({open: false});
+  };
 
   render() {
     const { name, id, editing, index, vintage, producer, color, country, region, qty, price } = this.props;
     const inputStyle = {
       width: "300px",
     }
+    const actions = [
+        <Button
+      label="Cancel"
+      primary={true}
+      onClick={this.handleClose}
+        />,
+      <Button
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.handleClose}
+        />,
+    ];
     return (
+
+      <span>
+          <Dialog
+            title="Dialog With Actions"
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+            >
+            The actions in this window were passed in as an array of React objects.
+          </Dialog>
         <tr>
           <td>{index + 1}: </td>
           <td>{name}</td>
@@ -85,8 +86,9 @@ export default class Wine extends React.Component {
           <td>{price}</td>
           {/* <td>{foo}</td> */}
           {/* <td onClick={this.startEdit.bind(this, editing, id)}><i  className="material-icons">create</i></td> */}
-          <td onClick={this.showModal.bind(this, id)}><i  className="edit-wine material-icons">create</i></td>
+          <td><i onClick={this.handleOpen}  className="edit-wine material-icons">create</i></td>
         </tr> 
+      </span>
     ) 
 
   }
