@@ -43,9 +43,9 @@ export default class Layout extends React.Component {
           <span className="mdl-layout-title">Settings</span>
           <nav className="mdl-navigation">
             <a className="mdl-navigation__link"></a>
-            <a className="mdl-navigation__link">Link</a>
-            <a className="mdl-navigation__link">Link</a>
-            <a className="mdl-navigation__link">Link</a>
+            <a className="mdl-navigation__link" href="#">Dashboard</a>
+            <a className="mdl-navigation__link" href="#">Wines</a>
+            <a className="mdl-navigation__link" href="#">List Builder</a>
           </nav>
         </div>
         <main className="mdl-layout__content">

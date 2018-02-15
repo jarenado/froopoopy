@@ -47,24 +47,26 @@ export default class WineList extends React.Component {
     )) 
 
     return (
-      <table className={tableClass}>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Label</th>
-            <th>Vintage</th>
-            <th>Producer</th>
-            <th>Color</th>
-            <th>Country</th>
-            <th>Region</th>
-            <th>QTY</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mappedWines}
-        </tbody>
-      </table>
+      <div className="mdl-grid">
+        <table className={tableClass}>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Label</th>
+              <th>Vintage</th>
+              <th>Producer</th>
+              <th>Color</th>
+              <th>Country</th>
+              <th>Region</th>
+              <th>QTY</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mappedWines}
+          </tbody>
+        </table>
+      </div>
     );
   }
     
